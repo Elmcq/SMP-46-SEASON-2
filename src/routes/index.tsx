@@ -428,7 +428,7 @@ function Index() {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href="https://discord.gg"
+              href="https://discord.gg/VZZXY4pFUj"
               target="_blank"
               rel="noopener noreferrer"
               className="font-pixel text-xs bg-accent text-accent-foreground px-8 py-5 pixel-border hover:translate-y-1 transition-transform inline-block"
