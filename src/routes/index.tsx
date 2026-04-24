@@ -1,6 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
-import { Copy, Check, AlertTriangle, LogIn, ShieldCheck, MessageCircle } from "lucide-react";
+import {
+  Copy,
+  Check,
+  AlertTriangle,
+  LogIn,
+  ShieldCheck,
+  MessageCircle,
+  Shield,
+  Hammer,
+  Camera,
+  Megaphone,
+} from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -12,6 +23,10 @@ import logoImg from "@/assets/smp46-logo.png";
 import tufImg from "@/assets/TUF.png";
 import expImg from "@/assets/EXP35.png";
 import districtImg from "@/assets/12TH.png";
+import azzamImg from "@/assets/azzam.png";
+import kianoImg from "@/assets/kiano.png";
+import sharonImg from "@/assets/sharon.png";
+import yogaImg from "@/assets/Yoga.png";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -27,6 +42,8 @@ const clans = [
     leader: "Erlengga",
     image: tufImg,
     discord: "https://discord.gg/hgF6TJkE",
+    members: 15,
+    status: "RECRUITING",
   },
   {
     name: "EXPEDITION 35",
@@ -34,6 +51,8 @@ const clans = [
     leader: "Azzam",
     image: expImg,
     whatsapp: "6281335758501",
+    members: 12,
+    status: "FULL",
   },
   {
     name: "12TH DISTRICT",
@@ -41,6 +60,61 @@ const clans = [
     leader: "Altan",
     image: districtImg,
     whatsapp: "6282313730860",
+    members: 8,
+    status: "RECRUITING",
+  },
+];
+
+const particles = Array.from({ length: 30 }).map((_, i) => ({
+  id: i,
+  left: `${Math.random() * 100}%`,
+  top: `${Math.random() * 100}%`,
+  width: `${Math.random() * 6 + 2}px`,
+  height: `${Math.random() * 6 + 2}px`,
+  animationDuration: `${Math.random() * 15 + 10}s`,
+  animationDelay: `${Math.random() * 5}s`,
+}));
+
+const staffMembers = [
+  {
+    name: "Nona Sharon",
+    role: "Koor Dokum",
+    desc: "Mengurus dokumentasi, media, dan mengabadikan momen perjalanan Season 2.",
+    icon: Camera,
+    image: sharonImg,
+    glow: "shadow-[0_0_15px_rgba(236,72,153,0.3)] hover:shadow-[0_0_30px_rgba(236,72,153,0.6)] border-pink-500/30",
+    textGlow: "text-pink-400 drop-shadow-[0_0_8px_rgba(236,72,153,0.8)]",
+    iconBg: "bg-pink-500/20 text-pink-400",
+  },
+  {
+    name: "Kiano",
+    role: "Koor Build",
+    desc: "Kepala arsitek yang merancang dan membangun infrastruktur server SMP.",
+    icon: Hammer,
+    image: kianoImg,
+    glow: "shadow-[0_0_15px_rgba(245,158,11,0.3)] hover:shadow-[0_0_30px_rgba(245,158,11,0.6)] border-amber-500/30",
+    textGlow: "text-amber-400 drop-shadow-[0_0_8px_rgba(245,158,11,0.8)]",
+    iconBg: "bg-amber-500/20 text-amber-400",
+  },
+  {
+    name: "Azzam",
+    role: "Server Guard & Scripter",
+    desc: "Menjaga keamanan server Minecraft dan mengembangkan script backend bot.js.",
+    icon: Shield,
+    image: azzamImg,
+    glow: "shadow-[0_0_15px_rgba(59,130,246,0.3)] hover:shadow-[0_0_30px_rgba(59,130,246,0.6)] border-blue-500/30",
+    textGlow: "text-blue-400 drop-shadow-[0_0_8px_rgba(59,130,246,0.8)]",
+    iconBg: "bg-blue-500/20 text-blue-400",
+  },
+  {
+    name: "Yoga",
+    role: "Events & Pengumuman",
+    desc: "Mengatur event mingguan seru, pengumuman server, dan aktivitas pemain.",
+    icon: Megaphone,
+    image: yogaImg,
+    glow: "shadow-[0_0_15px_rgba(34,197,94,0.3)] hover:shadow-[0_0_30px_rgba(34,197,94,0.6)] border-green-500/30",
+    textGlow: "text-green-400 drop-shadow-[0_0_8px_rgba(34,197,94,0.8)]",
+    iconBg: "bg-green-500/20 text-green-400",
   },
 ];
 
@@ -56,6 +130,26 @@ function Index() {
     minutes: 0,
     seconds: 0,
   });
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("opacity-100", "translate-y-0");
+            entry.target.classList.remove("opacity-0", "translate-y-12");
+          }
+        });
+      },
+      { threshold: 0.1 },
+    );
+
+    document.querySelectorAll(".reveal-on-scroll").forEach((el) => {
+      observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const targetDate = new Date("2026-04-25T06:00:00").getTime();
@@ -135,20 +229,41 @@ function Index() {
     },
   ];
 
+  const faqs = [
+    {
+      q: "Kapan server ini rilis?",
+      a: "SMP 46 Season 2 dijadwalkan rilis setelah masa ujian selesai, tepatnya pada 25 April 2026 jam 06:00 AM.",
+    },
+    {
+      q: "Apakah server ini bisa untuk Bedrock?",
+      a: "Tentu! Server ini menggunakan GeyserMC, jadi pemain Java dan Bedrock (MCPE/HP) bisa bermain bersama tanpa masalah.",
+    },
+    {
+      q: "Bagaimana sistem ekonominya?",
+      a: "Kita menggunakan sistem ekonomi Diamond murni berbasis player. Tidak ada /shop dari admin! Semua transaksi dilakukan antar player.",
+    },
+    {
+      q: "Apakah boleh membuat clan atau faction?",
+      a: "Sangat disarankan! Kamu bisa merekrut member, mendeklarasikan aliansi, bahkan perang dengan clan lain (selama sesuai aturan).",
+    },
+  ];
+
   return (
     <main className="min-h-screen bg-background text-foreground overflow-x-hidden">
       {/* NAV */}
       <nav
-        className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 backdrop-blur-md bg-background/70 border-b border-border ${
-          isVisible ? "translate-y-0" : "-translate-y-full opacity-0"
+        className={`fixed top-4 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-5xl z-50 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
+          isVisible ? "translate-y-0 opacity-100" : "-translate-y-[150%] opacity-0"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-center sm:grid sm:grid-cols-[1fr_auto_1fr]">
-          {/* Left Spacer (Desktop Only) */}
-          <div className="hidden sm:block" />
+        <div className="h-16 flex items-center justify-between px-6 sm:px-8 bg-background/80 backdrop-blur-xl border border-border/50 shadow-[0_8px_30px_rgb(0,0,0,0.4)] rounded-full alliance-card-glow">
+          {/* Left Logo (Desktop & Mobile) */}
+          <div className="hidden sm:flex items-center gap-3 w-1/3">
+            <img src={logoImg} alt="Logo" className="w-8 h-8 object-contain drop-shadow-md" />
+          </div>
 
           {/* Center Links (Perfectly Centered) */}
-          <div className="flex items-center justify-center gap-6 sm:gap-8 w-full sm:w-auto">
+          <div className="flex items-center justify-center gap-6 sm:gap-8 w-full sm:w-1/3">
             <a
               href="#about"
               className="font-mc text-[18px] sm:text-2xl hover:text-primary transition-colors drop-shadow-md"
@@ -176,12 +291,17 @@ function Index() {
           </div>
 
           {/* Right Button (Desktop Only) */}
-          <div className="hidden sm:flex justify-end">
+          <div className="hidden sm:flex justify-end w-1/3">
             <button
               onClick={copyIp}
-              className="font-pixel text-[10px] bg-primary text-primary-foreground px-4 py-2 pixel-border hover:translate-y-1 transition-transform"
+              className="font-pixel text-[10px] bg-primary text-primary-foreground px-4 py-2 pixel-border hover:-translate-y-1 transition-transform enchant-glint"
             >
-              COMING SOON
+              {timeLeft.days === 0 &&
+              timeLeft.hours === 0 &&
+              timeLeft.minutes === 0 &&
+              timeLeft.seconds === 0
+                ? "COPY IP"
+                : "COMING SOON"}
             </button>
           </div>
         </div>
@@ -197,6 +317,20 @@ function Index() {
             className="absolute inset-0 w-full h-full object-cover opacity-60 animate-slow-zoom"
           />
           <div className="absolute inset-0 bg-hero-overlay" />
+          {particles.map((p) => (
+            <div
+              key={p.id}
+              className="particle"
+              style={{
+                left: p.left,
+                top: p.top,
+                width: p.width,
+                height: p.height,
+                animationDuration: p.animationDuration,
+                animationDelay: p.animationDelay,
+              }}
+            />
+          ))}
         </div>
 
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center py-24">
@@ -210,7 +344,7 @@ function Index() {
             />
           </div>
 
-          <div className="inline-block font-pixel text-[10px] text-accent bg-secondary/80 px-4 py-2 pixel-border mb-8">
+          <div className="inline-block font-pixel text-[10px] text-accent bg-secondary/80 px-4 py-2 pixel-border mb-8 enchant-glint">
             ★ SEASON 2 IS COMING ★
           </div>
 
@@ -253,13 +387,39 @@ function Index() {
 
           {/* STATUS & COUNTDOWN AREA */}
           <div className="flex flex-col items-center gap-6">
-            <div className="inline-flex items-center gap-3 font-pixel text-[10px] text-yellow-500 bg-yellow-500/10 px-6 py-2 pixel-border border-yellow-500/30 animate-pulse">
-              <AlertTriangle className="w-4 h-4" /> NOT YET RELEASED
-            </div>
-
-            <p className="font-mc text-xl text-muted-foreground uppercase tracking-[0.3em] animate-pulse">
-              IP WILL BE REVEALED AT LAUNCH
-            </p>
+            {timeLeft.days === 0 &&
+            timeLeft.hours === 0 &&
+            timeLeft.minutes === 0 &&
+            timeLeft.seconds === 0 ? (
+              <>
+                <div className="inline-flex items-center gap-3 font-pixel text-[10px] text-green-400 bg-green-500/10 px-6 py-2 pixel-border border-green-500/30 animate-pulse">
+                  <Check className="w-4 h-4" /> SERVER IS LIVE
+                </div>
+                <div className="font-mc text-xl sm:text-2xl text-primary bg-secondary/80 px-6 py-4 pixel-border flex items-center gap-4">
+                  {SERVER_IP}:{SERVER_PORT}
+                  <button
+                    onClick={copyIp}
+                    className="hover:text-foreground transition-colors"
+                    title="Copy IP"
+                  >
+                    {copied ? (
+                      <Check className="w-5 h-5 text-green-400" />
+                    ) : (
+                      <Copy className="w-5 h-5" />
+                    )}
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="inline-flex items-center gap-3 font-pixel text-[10px] text-yellow-500 bg-yellow-500/10 px-6 py-2 pixel-border border-yellow-500/30 animate-pulse">
+                  <AlertTriangle className="w-4 h-4" /> NOT YET RELEASED
+                </div>
+                <p className="font-mc text-xl text-muted-foreground uppercase tracking-[0.3em] animate-pulse">
+                  IP WILL BE REVEALED AT LAUNCH
+                </p>
+              </>
+            )}
           </div>
 
           <p className="font-mc text-xl text-muted-foreground mt-12">
@@ -269,20 +429,61 @@ function Index() {
       </section>
 
       {/* ABOUT */}
-      <section id="about" className="py-24 px-6 border-y border-border bg-secondary/20">
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="font-pixel text-[10px] text-accent mb-4">// NEW CHAPTER</p>
-          <h2 className="font-pixel text-2xl sm:text-4xl text-primary mb-8">SEASON 2 UPGRADE</h2>
-          <p className="font-mc text-2xl text-foreground/80 leading-relaxed mb-12">
-            We’re preparing the ultimate Season 2 experience. The launch is scheduled for next week,
-            right after exams. Get your gear ready — a new adventure begins.
-          </p>
+      <section
+        id="about"
+        className="py-24 px-6 border-y border-border bg-secondary/20 overflow-hidden"
+      >
+        <div className="max-w-5xl mx-auto reveal-on-scroll opacity-0 translate-y-12 transition-all duration-1000 ease-out">
+          <div className="text-center mb-16">
+            <p className="font-pixel text-[10px] text-accent mb-4">// NEW CHAPTER</p>
+            <h2 className="font-pixel text-2xl sm:text-4xl text-primary mb-6 text-shadow-pixel">
+              SEASON 2 UPGRADE
+            </h2>
+            <p className="font-mc text-2xl text-foreground/80 leading-relaxed max-w-3xl mx-auto">
+              We’re preparing the ultimate Season 2 experience. The launch is scheduled for next
+              week, right after exams. Get your gear ready — a new adventure begins.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                icon: ShieldCheck,
+                title: "FACTIONS",
+                desc: "Form clans, build empires, and wage wars or alliances.",
+              },
+              {
+                icon: AlertTriangle,
+                title: "HARDCORE",
+                desc: "No pay-to-win. True vanilla survival experience.",
+              },
+              {
+                icon: Check,
+                title: "ECONOMY",
+                desc: "Player-driven diamond economy and trading system.",
+              },
+              {
+                icon: LogIn,
+                title: "EVENTS",
+                desc: "Weekly custom events, boss fights, and tournaments.",
+              },
+            ].map((feature, i) => (
+              <div
+                key={i}
+                className="bg-background/50 border border-border/50 p-6 pixel-border hover:bg-secondary/40 transition-colors group"
+              >
+                <feature.icon className="w-10 h-10 text-primary mb-4 group-hover:scale-110 transition-transform" />
+                <h3 className="font-pixel text-sm text-foreground mb-3">{feature.title}</h3>
+                <p className="font-mc text-lg text-muted-foreground leading-snug">{feature.desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* ALLIANCE SECTION */}
       <section id="clans" className="py-32 px-6">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto reveal-on-scroll opacity-0 translate-y-12 transition-all duration-1000 ease-out">
           <div className="text-center mb-20">
             <p className="font-pixel text-[10px] text-accent mb-4 tracking-[0.2em]">
               // SERVER ALLIANCE
@@ -366,9 +567,68 @@ function Index() {
         </div>
       </section>
 
+      {/* STAFF / TEAM SECTION */}
+      <section id="team" className="py-24 px-6 border-t border-border bg-background">
+        <div className="max-w-7xl mx-auto reveal-on-scroll opacity-0 translate-y-12 transition-all duration-1000 ease-out">
+          <div className="text-center mb-16">
+            <p className="font-pixel text-[10px] text-accent mb-4">// BEHIND THE SCENES</p>
+            <h2 className="font-pixel text-2xl sm:text-4xl text-primary text-shadow-pixel mb-6">
+              OUR TEAM
+            </h2>
+            <p className="font-mc text-xl text-foreground/80 max-w-2xl mx-auto">
+              Kenali staff dan pengurus yang bekerja di balik layar untuk memastikan SMP 46 Season 2
+              berjalan dengan lancar dan aman.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {staffMembers.map((staff, i) => (
+              <div
+                key={i}
+                className={`relative overflow-hidden bg-secondary/30 p-8 pixel-border transition-all duration-300 group hover:-translate-y-2 flex flex-col items-center text-center ${staff.glow}`}
+              >
+                {/* Background Decoration */}
+                <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-current to-transparent opacity-[0.08]" />
+
+                {/* Avatar Profile */}
+                <div className="relative mb-6 z-10 mt-2">
+                  <img
+                    src={staff.image}
+                    alt={staff.name}
+                    className="w-28 h-28 object-cover rounded-full pixel-border border-4 border-background/80 shadow-xl group-hover:scale-105 transition-transform duration-500"
+                    style={{
+                      objectPosition: staff.name === "Nona Sharon" ? "center 15%" : "center",
+                    }}
+                  />
+
+                  {/* Role Icon Badge */}
+                  <div
+                    className={`absolute bottom-0 right-0 w-10 h-10 rounded-full flex items-center justify-center pixel-border ${staff.iconBg} backdrop-blur-md shadow-lg transform group-hover:rotate-12 transition-transform`}
+                  >
+                    <staff.icon className="w-5 h-5 text-white" />
+                  </div>
+                </div>
+
+                {/* Text Content */}
+                <h3 className="font-pixel text-base text-foreground mb-2 z-10">{staff.name}</h3>
+                <p
+                  className={`font-pixel text-[10px] mb-5 uppercase tracking-wider z-10 ${staff.textGlow}`}
+                >
+                  {staff.role}
+                </p>
+
+                <p className="font-mc text-xl text-muted-foreground leading-relaxed z-10">
+                  {staff.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* RULES */}
       <section id="rules" className="py-24 px-6 bg-secondary/10">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto reveal-on-scroll opacity-0 translate-y-12 transition-all duration-1000 ease-out">
           <div className="text-center mb-16">
             <p className="font-pixel text-[10px] text-accent mb-4">// MUST READ</p>
             <h2 className="font-pixel text-2xl sm:text-4xl text-primary">SERVER RULES</h2>
@@ -438,10 +698,48 @@ function Index() {
         </div>
       </section>
 
+      {/* FAQ SECTION (CHAT STYLE) */}
+      <section id="faq" className="py-24 px-6 border-t border-border bg-background">
+        <div className="max-w-3xl mx-auto reveal-on-scroll opacity-0 translate-y-12 transition-all duration-1000 ease-out">
+          <div className="text-center mb-16">
+            <p className="font-pixel text-[10px] text-accent mb-4">// Q & A</p>
+            <h2 className="font-pixel text-2xl sm:text-4xl text-primary text-shadow-pixel mb-6">
+              FREQUENTLY ASKED
+            </h2>
+          </div>
+
+          <div className="flex flex-col gap-10">
+            {faqs.map((faq, i) => (
+              <div key={i} className="flex flex-col gap-4">
+                {/* User Question Bubble (Right) */}
+                <div className="flex justify-end items-end gap-3 w-[90%] sm:w-4/5 ml-auto">
+                  <div className="bg-primary/10 border border-primary/30 p-4 sm:p-5 rounded-2xl rounded-br-none shadow-sm">
+                    <p className="font-mc text-lg text-foreground/90 leading-snug">{faq.q}</p>
+                  </div>
+                  <div className="w-8 h-8 rounded-full bg-secondary/80 border border-border flex items-center justify-center shrink-0 mb-1">
+                    <span className="font-pixel text-[8px] text-muted-foreground">P</span>
+                  </div>
+                </div>
+
+                {/* Admin Answer Bubble (Left) */}
+                <div className="flex justify-start items-end gap-3 w-[90%] sm:w-4/5 mr-auto">
+                  <div className="w-8 h-8 rounded-full bg-secondary/30 border border-primary/50 flex items-center justify-center shrink-0 mb-1 shadow-[0_0_10px_rgba(59,130,246,0.3)] alliance-card-glow">
+                    <img src={logoImg} alt="Staff" className="w-4 h-4 object-contain" />
+                  </div>
+                  <div className="bg-secondary/40 border border-border/50 p-4 sm:p-5 rounded-2xl rounded-bl-none shadow-sm">
+                    <p className="font-mc text-lg text-muted-foreground leading-relaxed">{faq.a}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* JOIN CTA */}
       <section id="join" className="py-32 px-6 relative overflow-hidden">
         <div className="absolute inset-0 bg-hero-gradient opacity-80" />
-        <div className="relative max-w-3xl mx-auto text-center">
+        <div className="relative max-w-3xl mx-auto text-center reveal-on-scroll opacity-0 translate-y-12 transition-all duration-1000 ease-out">
           <h2 className="font-pixel text-2xl sm:text-5xl text-primary text-shadow-pixel mb-6">
             READY TO JOIN?
           </h2>
@@ -455,7 +753,7 @@ function Index() {
               href="https://discord.gg/VZZXY4pFUj"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-pixel text-xs bg-accent text-accent-foreground px-8 py-5 pixel-border hover:translate-y-1 transition-transform inline-block"
+              className="font-pixel text-xs bg-accent text-accent-foreground px-8 py-5 pixel-border hover:translate-y-1 transition-transform inline-block enchant-glint"
             >
               JOIN DISCORD
             </a>
@@ -464,23 +762,44 @@ function Index() {
       </section>
 
       {/* FOOTER */}
-      <footer className="border-t border-border py-10 px-6">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
+      <footer className="border-t border-border/50 py-8 px-6 bg-background relative overflow-hidden">
+        <div className="absolute inset-0 bg-hero-gradient opacity-5 pointer-events-none" />
+        <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
+          {/* Logo & Copyright */}
+          <div className="flex items-center gap-4">
             <img
               src={logoImg}
               alt="SMP 46 logo"
-              width={24}
-              height={24}
-              className="w-6 h-6 object-contain"
+              className="w-6 h-6 object-contain drop-shadow-md opacity-70 hover:opacity-100 transition-opacity"
             />
-            <span className="font-pixel text-[10px] text-muted-foreground">
-              PROYEK SMP 46 © 2026
+            <span className="font-pixel text-[8px] text-muted-foreground uppercase tracking-widest">
+              © 2026 Project SMP 46. All rights reserved.
             </span>
           </div>
-          <p className="font-mc text-lg text-muted-foreground">
-            Not affiliated with Mojang or Microsoft.
-          </p>
+
+          {/* Links */}
+          <div className="flex items-center gap-6">
+            <a
+              href="#about"
+              className="font-mc text-lg text-muted-foreground hover:text-primary transition-colors"
+            >
+              About
+            </a>
+            <a
+              href="#rules"
+              className="font-mc text-lg text-muted-foreground hover:text-primary transition-colors"
+            >
+              Rules
+            </a>
+            <a
+              href="https://discord.gg/VZZXY4pFUj"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mc text-lg text-muted-foreground hover:text-[#5865F2] transition-colors"
+            >
+              Discord
+            </a>
+          </div>
         </div>
       </footer>
     </main>
