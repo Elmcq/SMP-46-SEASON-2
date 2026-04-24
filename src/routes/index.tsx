@@ -32,8 +32,8 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const SERVER_IP = "147.185.221.28";
-const SERVER_PORT = "17662";
+const SERVER_IP = "SMP46.aternos.me";
+const SERVER_PORT = "19088";
 
 const clans = [
   {
