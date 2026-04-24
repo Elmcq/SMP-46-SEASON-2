@@ -95,14 +95,18 @@
   --logo-yellow: oklch(0.85 0.2 85);
   --logo-red: oklch(0.6 0.25 25);
 
-  --gradient-hero: linear-gradient(135deg,
-      oklch(0.18 0.03 145) 0%,
-      oklch(0.25 0.06 145) 50%,
-      oklch(0.2 0.04 95) 100%);
-  --gradient-hero-overlay: linear-gradient(to bottom,
-      oklch(0.18 0.03 250 / 0.4) 0%,
-      oklch(0.18 0.03 145 / 0.7) 50%,
-      oklch(0.18 0.03 145 / 0.95) 100%);
+  --gradient-hero: linear-gradient(
+    135deg,
+    oklch(0.18 0.03 145) 0%,
+    oklch(0.25 0.06 145) 50%,
+    oklch(0.2 0.04 95) 100%
+  );
+  --gradient-hero-overlay: linear-gradient(
+    to bottom,
+    oklch(0.18 0.03 250 / 0.4) 0%,
+    oklch(0.18 0.03 145 / 0.7) 50%,
+    oklch(0.18 0.03 145 / 0.95) 100%
+  );
   --gradient-grass: linear-gradient(180deg, oklch(0.72 0.22 142), oklch(0.42 0.08 55));
   --gradient-gold: linear-gradient(135deg, oklch(0.85 0.18 85), oklch(0.7 0.2 65));
   --shadow-block: 0 6px 0 oklch(0.12 0.03 145), 0 10px 30px oklch(0 0 0 / 0.5);
@@ -233,7 +237,6 @@
   }
 
   @keyframes float-block {
-
     0%,
     100% {
       transform: translateY(0) rotate(-2deg);
@@ -266,7 +269,6 @@
   }
 
   @keyframes pulse-glow {
-
     0%,
     100% {
       box-shadow: 0 0 20px oklch(0.72 0.22 142 / 0.4);
@@ -281,24 +283,36 @@
     animation: pulse-glow 2.5s ease-in-out infinite;
   }
 }
-  @keyframes enchant-shine {
-    0% { transform: translateX(-150%) skewX(-25deg); }
-    20%, 100% { transform: translateX(250%) skewX(-25deg); }
+@keyframes enchant-shine {
+  0% {
+    transform: translateX(-150%) skewX(-25deg);
   }
+  20%,
+  100% {
+    transform: translateX(250%) skewX(-25deg);
+  }
+}
 
-  .enchant-glint {
-    position: relative;
-    overflow: hidden;
-  }
+.enchant-glint {
+  position: relative;
+  overflow: hidden;
+}
 
-  .enchant-glint::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 60%;
-    height: 100%;
-    background: linear-gradient(to right, transparent, oklch(1 0 0 / 0.1) 20%, oklch(1 0 0 / 0.6) 50%, oklch(1 0 0 / 0.1) 80%, transparent);
-    animation: enchant-shine 5s ease-in-out infinite;
-    pointer-events: none;
-  }
+.enchant-glint::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    oklch(1 0 0 / 0.1) 20%,
+    oklch(1 0 0 / 0.6) 50%,
+    oklch(1 0 0 / 0.1) 80%,
+    transparent
+  );
+  animation: enchant-shine 5s ease-in-out infinite;
+  pointer-events: none;
+}
