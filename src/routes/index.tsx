@@ -32,8 +32,11 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const SERVER_IP = "SMP46.aternos.me";
-const SERVER_PORT = "19088";
+const SERVER_IP = "100.117.104.39";
+const SERVER_PORT = "19132";
+
+const BACKUP_IP = "SMP46.aternos.me";
+const BACKUP_PORT = "19088";
 
 const clans = [
   {
@@ -119,7 +122,7 @@ const staffMembers = [
 ];
 
 function Index() {
-  const [copied, setCopied] = useState(false);
+  const [copiedText, setCopiedText] = useState("");
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
@@ -191,10 +194,10 @@ function Index() {
     };
   }, [lastScrollY]);
 
-  const copyIp = () => {
-    navigator.clipboard.writeText(`${SERVER_IP}:${SERVER_PORT}`);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const copyIp = (text: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedText(text);
+    setTimeout(() => setCopiedText(""), 2000);
   };
 
   const rules = [
@@ -293,7 +296,7 @@ function Index() {
           {/* Right Button (Desktop Only) */}
           <div className="hidden sm:flex justify-end w-1/3">
             <button
-              onClick={copyIp}
+              onClick={() => copyIp(`${SERVER_IP}:${SERVER_PORT}`)}
               className="font-pixel text-[10px] bg-primary text-primary-foreground px-4 py-2 pixel-border hover:-translate-y-1 transition-transform enchant-glint"
             >
               {timeLeft.days === 0 &&
@@ -395,19 +398,63 @@ function Index() {
                 <div className="inline-flex items-center gap-3 font-pixel text-[10px] text-green-400 bg-green-500/10 px-6 py-2 pixel-border border-green-500/30 animate-pulse">
                   <Check className="w-4 h-4" /> SERVER IS LIVE
                 </div>
-                <div className="font-mc text-xl sm:text-2xl text-primary bg-secondary/80 px-6 py-4 pixel-border flex items-center gap-4">
-                  {SERVER_IP}:{SERVER_PORT}
-                  <button
-                    onClick={copyIp}
-                    className="hover:text-foreground transition-colors"
-                    title="Copy IP"
-                  >
-                    {copied ? (
-                      <Check className="w-5 h-5 text-green-400" />
-                    ) : (
-                      <Copy className="w-5 h-5" />
-                    )}
-                  </button>
+                <div className="flex flex-col gap-4 w-full max-w-2xl mt-4">
+                  {/* Main Server */}
+                  <div className="font-mc text-xl sm:text-2xl text-primary bg-secondary/80 px-6 py-4 pixel-border flex flex-col items-center gap-2">
+                    <span className="text-xs sm:text-base font-pixel text-accent mb-2 flex items-center gap-2">
+                      SERVER NAME : SMP 46 PROJECT SEASON 2
+                      <span className="bg-green-500/20 text-green-400 border border-green-500/30 px-3 py-1 rounded text-[10px] sm:text-xs uppercase tracking-wider">24/7</span>
+                    </span>
+                    <div className="flex items-center gap-4">
+                      {SERVER_IP}:{SERVER_PORT}
+                      <button
+                        onClick={() => copyIp(`${SERVER_IP}:${SERVER_PORT}`)}
+                        className="hover:text-foreground transition-colors"
+                        title="Copy IP"
+                      >
+                        {copiedText === `${SERVER_IP}:${SERVER_PORT}` ? (
+                          <Check className="w-5 h-5 text-green-400" />
+                        ) : (
+                          <Copy className="w-5 h-5" />
+                        )}
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Backup Server */}
+                  <div className="font-mc text-lg sm:text-xl text-primary bg-secondary/80 px-6 py-4 pixel-border flex flex-col items-center gap-2">
+                    <span className="text-xs sm:text-base font-pixel text-accent mb-2 flex items-center gap-2">
+                      🌐 SERVER BACKUP (ATERNOS)
+                      <span className="bg-red-500/20 text-red-400 border border-red-500/30 px-3 py-1 rounded text-[10px] sm:text-xs uppercase tracking-wider">OFFLINE</span>
+                    </span>
+                    <span className="text-[10px] sm:text-xs font-pixel text-muted-foreground mb-2">SMP 46 (Backup) SEASON 2</span>
+                    <div className="flex items-center gap-4">
+                      {BACKUP_IP}:{BACKUP_PORT}
+                      <button
+                        onClick={() => copyIp(`${BACKUP_IP}:${BACKUP_PORT}`)}
+                        className="hover:text-foreground transition-colors"
+                        title="Copy IP"
+                      >
+                        {copiedText === `${BACKUP_IP}:${BACKUP_PORT}` ? (
+                          <Check className="w-5 h-5 text-green-400" />
+                        ) : (
+                          <Copy className="w-5 h-5" />
+                        )}
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Old Server */}
+                  <div className="font-mc text-lg sm:text-xl text-muted-foreground bg-secondary/80 px-6 py-4 pixel-border flex flex-col items-center gap-2 opacity-70">
+                    <span className="text-xs sm:text-base font-pixel text-accent mb-2 flex items-center gap-2">
+                      🖥️ SERVER OLD (MAINTENANCE)
+                      <span className="bg-red-500/20 text-red-400 border border-red-500/30 px-3 py-1 rounded text-[10px] sm:text-xs uppercase tracking-wider">OFFLINE</span>
+                    </span>
+                    <span className="text-[10px] sm:text-xs font-pixel text-muted-foreground mb-2">PROYEK SMP 46 SEASON 1</span>
+                    <div className="flex items-center gap-4">
+                      IP : MAINTENANCE | PORT : MAINTENANCE
+                    </div>
+                  </div>
                 </div>
               </>
             ) : (
