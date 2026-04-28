@@ -32,8 +32,8 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const SERVER_IP = "100.117.104.39";
-const SERVER_PORT = "19132";
+const SERVER_IP = "147.185.221.224";
+const SERVER_PORT = "54943";
 
 const BACKUP_IP = "SMP46.aternos.me";
 const BACKUP_PORT = "19088";
