@@ -62,18 +62,21 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Project SMP 46 — Season 2 | Minecraft Server" },
+      { title: "Project SMP 46 — Season 2 Legacy Archive" },
       {
         name: "description",
         content:
-          "Join Project SMP 46 Season 2 — a community-driven Minecraft survival server with epic builds, factions, and zero pay-to-win.",
+          "Project SMP 46 Season 2 — a discontinued legacy Minecraft community project that may return when the community is ready.",
       },
       { name: "author", content: "Project SMP 46" },
-      { property: "og:title", content: "Project SMP 46 — Season 2" },
-      { property: "og:description", content: "Survive. Build. Conquer. Season 2 is live." },
+      { property: "og:title", content: "Project SMP 46 — Season 2 Legacy Archive" },
+      {
+        property: "og:description",
+        content:
+          "Season 2 has been discontinued for now and may return in the future when the community is ready.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {

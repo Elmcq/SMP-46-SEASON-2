@@ -1,17 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
-import {
-  Copy,
-  Check,
-  AlertTriangle,
-  LogIn,
-  ShieldCheck,
-  MessageCircle,
-  Shield,
-  Hammer,
-  Camera,
-  Megaphone,
-} from "lucide-react";
+import { AlertTriangle, MessageCircle } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -20,53 +9,13 @@ import {
 } from "@/components/ui/accordion";
 import heroImg from "@/assets/hero-smp.jpg";
 import logoImg from "@/assets/smp46-logo.png";
-import tufImg from "@/assets/TUF.png";
-import expImg from "@/assets/EXP35.png";
-import districtImg from "@/assets/12TH.png";
-import azzamImg from "@/assets/azzam.png";
-import kianoImg from "@/assets/kiano.png";
-import sharonImg from "@/assets/sharon.png";
-import yogaImg from "@/assets/Yoga.png";
+import { projectConfig } from "@/config/project";
+import { communityLinks, serverConfig } from "@/config/server";
+import { clans, faqs, features, rules, staffMembers } from "@/config/content";
 
 export const Route = createFileRoute("/")({
   component: Index,
 });
-
-const SERVER_IP = "147.185.221.224";
-const SERVER_PORT = "54943";
-
-const BACKUP_IP = "SMP46.aternos.me";
-const BACKUP_PORT = "19088";
-
-const clans = [
-  {
-    name: "TUF",
-    fullName: "THE UNION FEDERATION",
-    leader: "Erlengga",
-    image: tufImg,
-    discord: "https://discord.gg/hgF6TJkE",
-    members: 15,
-    status: "RECRUITING",
-  },
-  {
-    name: "EXPEDITION 35",
-    fullName: "INTERNATIONAL SPACE STATION",
-    leader: "Azzam",
-    image: expImg,
-    whatsapp: "6281335758501",
-    members: 12,
-    status: "FULL",
-  },
-  {
-    name: "12TH DISTRICT",
-    fullName: "12TH DISTRICT",
-    leader: "Altan",
-    image: districtImg,
-    whatsapp: "6282313730860",
-    members: 8,
-    status: "RECRUITING",
-  },
-];
 
 const particles = Array.from({ length: 30 }).map((_, i) => ({
   id: i,
@@ -78,61 +27,9 @@ const particles = Array.from({ length: 30 }).map((_, i) => ({
   animationDelay: `${Math.random() * 5}s`,
 }));
 
-const staffMembers = [
-  {
-    name: "Nona Sharon",
-    role: "Koor Dokum",
-    desc: "Mengurus dokumentasi, media, dan mengabadikan momen perjalanan Season 2.",
-    icon: Camera,
-    image: sharonImg,
-    glow: "shadow-[0_0_15px_rgba(236,72,153,0.3)] hover:shadow-[0_0_30px_rgba(236,72,153,0.6)] border-pink-500/30",
-    textGlow: "text-pink-400 drop-shadow-[0_0_8px_rgba(236,72,153,0.8)]",
-    iconBg: "bg-pink-500/20 text-pink-400",
-  },
-  {
-    name: "Kiano",
-    role: "Koor Build",
-    desc: "Kepala arsitek yang merancang dan membangun infrastruktur server SMP.",
-    icon: Hammer,
-    image: kianoImg,
-    glow: "shadow-[0_0_15px_rgba(245,158,11,0.3)] hover:shadow-[0_0_30px_rgba(245,158,11,0.6)] border-amber-500/30",
-    textGlow: "text-amber-400 drop-shadow-[0_0_8px_rgba(245,158,11,0.8)]",
-    iconBg: "bg-amber-500/20 text-amber-400",
-  },
-  {
-    name: "Azzam",
-    role: "Server Guard & Scripter",
-    desc: "Menjaga keamanan server Minecraft dan mengembangkan script backend bot.js.",
-    icon: Shield,
-    image: azzamImg,
-    glow: "shadow-[0_0_15px_rgba(59,130,246,0.3)] hover:shadow-[0_0_30px_rgba(59,130,246,0.6)] border-blue-500/30",
-    textGlow: "text-blue-400 drop-shadow-[0_0_8px_rgba(59,130,246,0.8)]",
-    iconBg: "bg-blue-500/20 text-blue-400",
-  },
-  {
-    name: "Yoga",
-    role: "Events & Pengumuman",
-    desc: "Mengatur event mingguan seru, pengumuman server, dan aktivitas pemain.",
-    icon: Megaphone,
-    image: yogaImg,
-    glow: "shadow-[0_0_15px_rgba(34,197,94,0.3)] hover:shadow-[0_0_30px_rgba(34,197,94,0.6)] border-green-500/30",
-    textGlow: "text-green-400 drop-shadow-[0_0_8px_rgba(34,197,94,0.8)]",
-    iconBg: "bg-green-500/20 text-green-400",
-  },
-];
-
 function Index() {
-  const [copiedText, setCopiedText] = useState("");
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-
-  // COUNTDOWN LOGIC
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -155,28 +52,6 @@ function Index() {
   }, []);
 
   useEffect(() => {
-    const targetDate = new Date("2026-04-25T06:00:00").getTime();
-
-    const interval = setInterval(() => {
-      const now = new Date().getTime();
-      const difference = targetDate - now;
-
-      if (difference > 0) {
-        setTimeLeft({
-          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-          minutes: Math.floor((difference / 1000 / 60) % 60),
-          seconds: Math.floor((difference / 1000) % 60),
-        });
-      } else {
-        clearInterval(interval);
-      }
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
     const controlNavbar = () => {
       if (typeof window !== "undefined") {
         if (window.scrollY > lastScrollY && window.scrollY > 100) {
@@ -193,63 +68,6 @@ function Index() {
       window.removeEventListener("scroll", controlNavbar);
     };
   }, [lastScrollY]);
-
-  const copyIp = (text: string) => {
-    navigator.clipboard.writeText(text);
-    setCopiedText(text);
-    setTimeout(() => setCopiedText(""), 2000);
-  };
-
-  const rules = [
-    {
-      id: "rule-1",
-      title: "RULE #1: Be Respectful",
-      content:
-        "No toxic behavior, harassment, insults, or hate speech. Respect all players and staff.",
-    },
-    {
-      id: "rule-2",
-      title: "RULE #2: No Griefing",
-      content:
-        "Do not destroy, steal, or modify other players' builds without permission. Pranks are only allowed if both sides agree.",
-    },
-    {
-      id: "rule-3",
-      title: "RULE #3: No Cheating",
-      content:
-        "No hacked clients, X-ray, dupes (except specific non-diamond items), exploits, or unfair mods.",
-    },
-    {
-      id: "rule-4",
-      title: "RULE #4: No Drama",
-      content:
-        "No starting arguments, fights, or unnecessary conflicts. Repeated drama may result in warnings.",
-    },
-    {
-      id: "rule-5",
-      title: "RULE #5: Have Fun!",
-      content: "This is a community—play fair, help others, and enjoy the game!",
-    },
-  ];
-
-  const faqs = [
-    {
-      q: "Kapan server ini rilis?",
-      a: "SMP 46 Season 2 dijadwalkan rilis setelah masa ujian selesai, tepatnya pada 25 April 2026 jam 06:00 AM.",
-    },
-    {
-      q: "Apakah server ini bisa untuk Bedrock?",
-      a: "Tentu! Server ini menggunakan GeyserMC, jadi pemain Java dan Bedrock (MCPE/HP) bisa bermain bersama tanpa masalah.",
-    },
-    {
-      q: "Bagaimana sistem ekonominya?",
-      a: "Kita menggunakan sistem ekonomi Diamond murni berbasis player. Tidak ada /shop dari admin! Semua transaksi dilakukan antar player.",
-    },
-    {
-      q: "Apakah boleh membuat clan atau faction?",
-      a: "Sangat disarankan! Kamu bisa merekrut member, mendeklarasikan aliansi, bahkan perang dengan clan lain (selama sesuai aturan).",
-    },
-  ];
 
   return (
     <main className="min-h-screen bg-background text-foreground overflow-x-hidden">
@@ -293,19 +111,11 @@ function Index() {
             </a>
           </div>
 
-          {/* Right Button (Desktop Only) */}
+          {/* Status marker */}
           <div className="hidden sm:flex justify-end w-1/3">
-            <button
-              onClick={() => copyIp(`${SERVER_IP}:${SERVER_PORT}`)}
-              className="font-pixel text-[10px] bg-primary text-primary-foreground px-4 py-2 pixel-border hover:-translate-y-1 transition-transform enchant-glint"
-            >
-              {timeLeft.days === 0 &&
-              timeLeft.hours === 0 &&
-              timeLeft.minutes === 0 &&
-              timeLeft.seconds === 0
-                ? "COPY IP"
-                : "COMING SOON"}
-            </button>
+            <span className="font-pixel text-[9px] text-amber-300 bg-amber-500/10 border border-amber-500/30 px-4 py-2 pixel-border">
+              {projectConfig.status}
+            </span>
           </div>
         </div>
       </nav>
@@ -347,8 +157,8 @@ function Index() {
             />
           </div>
 
-          <div className="inline-block font-pixel text-[10px] text-accent bg-secondary/80 px-4 py-2 pixel-border mb-8 enchant-glint">
-            ★ SEASON 2 IS COMING ★
+          <div className="inline-block font-pixel text-[10px] text-amber-300 bg-amber-500/10 border border-amber-500/30 px-4 py-2 pixel-border mb-8">
+            {projectConfig.status}
           </div>
 
           <h1 className="font-pixel text-xl sm:text-4xl md:text-6xl text-primary text-shadow-pixel leading-tight mb-4 tracking-tighter">
@@ -360,118 +170,44 @@ function Index() {
 
           <div className="max-w-2xl mx-auto mb-12">
             <p className="font-mc text-2xl text-foreground/90 leading-snug">
-              Launching next week after exams.
+              {projectConfig.message}
               <br />
-              Gear up and join the adventure.
+              This page preserves the Season 2 vision for the community.
             </p>
           </div>
 
-          {/* COUNTDOWN TIMER */}
-          <div className="flex justify-center gap-2 sm:gap-6 mb-16 px-4">
-            {[
-              { label: "DAYS", value: timeLeft.days },
-              { label: "HOURS", value: timeLeft.hours },
-              { label: "MINS", value: timeLeft.minutes },
-              { label: "SECS", value: timeLeft.seconds },
-            ].map((unit) => (
-              <div
-                key={unit.label}
-                className="bg-secondary/40 backdrop-blur-md pixel-border p-3 sm:p-5 min-w-[70px] sm:min-w-[100px] group hover:scale-105 transition-transform"
-              >
-                <div className="font-pixel text-xl sm:text-3xl text-primary animate-pulse-glow mb-2">
-                  {unit.value.toString().padStart(2, "0")}
-                </div>
-                <div className="font-pixel text-[6px] sm:text-[8px] text-muted-foreground uppercase tracking-widest">
-                  {unit.label}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* STATUS & COUNTDOWN AREA */}
+          {/* PROJECT STATUS */}
           <div className="flex flex-col items-center gap-6">
-            {timeLeft.days === 0 &&
-            timeLeft.hours === 0 &&
-            timeLeft.minutes === 0 &&
-            timeLeft.seconds === 0 ? (
-              <>
-                <div className="inline-flex items-center gap-3 font-pixel text-[10px] text-green-400 bg-green-500/10 px-6 py-2 pixel-border border-green-500/30 animate-pulse">
-                  <Check className="w-4 h-4" /> SERVER IS LIVE
-                </div>
-                <div className="flex flex-col gap-4 w-full max-w-2xl mt-4">
-                  {/* Main Server */}
-                  <div className="font-mc text-xl sm:text-2xl text-primary bg-secondary/80 px-6 py-4 pixel-border flex flex-col items-center gap-2">
-                    <span className="text-xs sm:text-base font-pixel text-accent mb-2 flex items-center gap-2">
-                      SERVER NAME : SMP 46 PROJECT SEASON 2
-                      <span className="bg-green-500/20 text-green-400 border border-green-500/30 px-3 py-1 rounded text-[10px] sm:text-xs uppercase tracking-wider">24/7</span>
-                    </span>
-                    <div className="flex items-center gap-4">
-                      {SERVER_IP}:{SERVER_PORT}
-                      <button
-                        onClick={() => copyIp(`${SERVER_IP}:${SERVER_PORT}`)}
-                        className="hover:text-foreground transition-colors"
-                        title="Copy IP"
-                      >
-                        {copiedText === `${SERVER_IP}:${SERVER_PORT}` ? (
-                          <Check className="w-5 h-5 text-green-400" />
-                        ) : (
-                          <Copy className="w-5 h-5" />
-                        )}
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Backup Server */}
-                  <div className="font-mc text-lg sm:text-xl text-primary bg-secondary/80 px-6 py-4 pixel-border flex flex-col items-center gap-2">
-                    <span className="text-xs sm:text-base font-pixel text-accent mb-2 flex items-center gap-2">
-                      🌐 SERVER BACKUP (ATERNOS)
-                      <span className="bg-red-500/20 text-red-400 border border-red-500/30 px-3 py-1 rounded text-[10px] sm:text-xs uppercase tracking-wider">OFFLINE</span>
-                    </span>
-                    <span className="text-[10px] sm:text-xs font-pixel text-muted-foreground mb-2">SMP 46 (Backup) SEASON 2</span>
-                    <div className="flex items-center gap-4">
-                      {BACKUP_IP}:{BACKUP_PORT}
-                      <button
-                        onClick={() => copyIp(`${BACKUP_IP}:${BACKUP_PORT}`)}
-                        className="hover:text-foreground transition-colors"
-                        title="Copy IP"
-                      >
-                        {copiedText === `${BACKUP_IP}:${BACKUP_PORT}` ? (
-                          <Check className="w-5 h-5 text-green-400" />
-                        ) : (
-                          <Copy className="w-5 h-5" />
-                        )}
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Old Server */}
-                  <div className="font-mc text-lg sm:text-xl text-muted-foreground bg-secondary/80 px-6 py-4 pixel-border flex flex-col items-center gap-2 opacity-70">
-                    <span className="text-xs sm:text-base font-pixel text-accent mb-2 flex items-center gap-2">
-                      🖥️ SERVER OLD (MAINTENANCE)
-                      <span className="bg-red-500/20 text-red-400 border border-red-500/30 px-3 py-1 rounded text-[10px] sm:text-xs uppercase tracking-wider">OFFLINE</span>
-                    </span>
-                    <span className="text-[10px] sm:text-xs font-pixel text-muted-foreground mb-2">PROYEK SMP 46 SEASON 1</span>
-                    <div className="flex items-center gap-4">
-                      IP : MAINTENANCE | PORT : MAINTENANCE
-                    </div>
-                  </div>
-                </div>
-              </>
-            ) : (
-              <>
-                <div className="inline-flex items-center gap-3 font-pixel text-[10px] text-yellow-500 bg-yellow-500/10 px-6 py-2 pixel-border border-yellow-500/30 animate-pulse">
-                  <AlertTriangle className="w-4 h-4" /> NOT YET RELEASED
-                </div>
-                <p className="font-mc text-xl text-muted-foreground uppercase tracking-[0.3em] animate-pulse">
-                  IP WILL BE REVEALED AT LAUNCH
-                </p>
-              </>
-            )}
+            <div className="inline-flex items-center gap-3 font-pixel text-[10px] text-amber-300 bg-amber-500/10 px-6 py-3 pixel-border border-amber-500/30">
+              <AlertTriangle className="w-4 h-4" /> {projectConfig.status}
+            </div>
+            <p className="font-mc text-xl text-muted-foreground max-w-2xl">
+              The project is waiting for the right time and future community recruitment.
+            </p>
           </div>
 
           <p className="font-mc text-xl text-muted-foreground mt-12">
-            Minecraft Bedrock Edition • Version 26.13
+            Minecraft Bedrock Edition • {projectConfig.season} legacy archive
           </p>
+
+          <div className="mt-8 grid gap-3 max-w-2xl mx-auto text-left">
+            {[serverConfig.primary, serverConfig.backup, serverConfig.previous].map((server) => (
+              <div
+                key={server.name}
+                className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 bg-secondary/50 px-5 py-3 pixel-border"
+              >
+                <div>
+                  <p className="font-pixel text-[9px] text-accent">{server.name}</p>
+                  <p className="font-mc text-lg text-muted-foreground">
+                    {server.address}:{server.port}
+                  </p>
+                </div>
+                <span className="font-pixel text-[8px] text-muted-foreground border border-border/60 px-3 py-2">
+                  {server.status}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -487,34 +223,13 @@ function Index() {
               SEASON 2 UPGRADE
             </h2>
             <p className="font-mc text-2xl text-foreground/80 leading-relaxed max-w-3xl mx-auto">
-              We’re preparing the ultimate Season 2 experience. The launch is scheduled for next
-              week, right after exams. Get your gear ready — a new adventure begins.
+              Season 2 is preserved as a legacy project. It has been discontinued for now, but its
+              ideas and community vision may return when the time is right.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                icon: ShieldCheck,
-                title: "FACTIONS",
-                desc: "Form clans, build empires, and wage wars or alliances.",
-              },
-              {
-                icon: AlertTriangle,
-                title: "HARDCORE",
-                desc: "No pay-to-win. True vanilla survival experience.",
-              },
-              {
-                icon: Check,
-                title: "ECONOMY",
-                desc: "Player-driven diamond economy and trading system.",
-              },
-              {
-                icon: LogIn,
-                title: "EVENTS",
-                desc: "Weekly custom events, boss fights, and tournaments.",
-              },
-            ].map((feature, i) => (
+            {features.map((feature, i) => (
               <div
                 key={i}
                 className="bg-background/50 border border-border/50 p-6 pixel-border hover:bg-secondary/40 transition-colors group"
@@ -533,11 +248,14 @@ function Index() {
         <div className="max-w-7xl mx-auto reveal-on-scroll opacity-0 translate-y-12 transition-all duration-1000 ease-out">
           <div className="text-center mb-20">
             <p className="font-pixel text-[10px] text-accent mb-4 tracking-[0.2em]">
-              // SERVER ALLIANCE
+              // SEASON 2 ARCHIVE
             </p>
             <h2 className="font-pixel text-2xl sm:text-4xl text-primary text-shadow-pixel">
               POWERFUL CLANS
             </h2>
+            <p className="font-mc text-xl text-muted-foreground mt-5 max-w-2xl mx-auto">
+              A record of the alliances and community structure planned for Season 2.
+            </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -559,15 +277,13 @@ function Index() {
                 {/* Clan Info */}
                 <div className="p-8 relative">
                   <a
-                    href={
-                      clan.discord ||
-                      `https://wa.me/${clan.whatsapp}?text=Halo klan ${clan.name}, saya ingin bergabung ke server SMP 46.`
-                    }
+                    href={clan.contactUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`absolute -top-12 right-8 w-16 h-16 ${clan.discord ? "bg-[#5865F2]" : "bg-green-500"} pixel-border rounded-xl flex flex-col items-center justify-center group/wa hover:rotate-12 transition-transform shadow-[0_0_20px_rgba(${clan.discord ? "88,101,242" : "34,197,94"},0.4)]`}
+                    className={`absolute -top-12 right-8 w-16 h-16 ${clan.contactType === "discord" ? "bg-[#5865F2]" : "bg-green-500"} pixel-border rounded-xl flex flex-col items-center justify-center group/wa hover:rotate-12 transition-transform shadow-[0_0_20px_rgba(${clan.contactType === "discord" ? "88,101,242" : "34,197,94"},0.4)]`}
+                    aria-label={`${clan.contactType === "discord" ? "Join" : "Contact"} ${clan.name}`}
                   >
-                    {clan.discord ? (
+                    {clan.contactType === "discord" ? (
                       <svg
                         viewBox="0 0 24 24"
                         fill="white"
@@ -580,7 +296,7 @@ function Index() {
                       <MessageCircle className="w-8 h-8 text-white" />
                     )}
                     <span className="font-pixel text-[6px] text-white opacity-0 group-hover/wa:opacity-100 transition-opacity mt-1">
-                      {clan.discord ? "JOIN" : "DM"}
+                      {clan.contactType === "discord" ? "JOIN" : "DM"}
                     </span>
                   </a>
 
@@ -600,7 +316,7 @@ function Index() {
                     </div>
                     <div className="flex flex-col items-center gap-1 group/icon">
                       <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center border border-primary/30 group-hover/icon:bg-primary/30 transition-colors">
-                        <ShieldCheck className="w-5 h-5 text-primary" />
+                        <span className="font-pixel text-[8px] text-primary">ARCHIVE</span>
                       </div>
                       <span className="font-pixel text-[6px] text-primary opacity-0 group-hover/icon:opacity-100 transition-opacity">
                         VERIFIED
@@ -788,16 +504,16 @@ function Index() {
         <div className="absolute inset-0 bg-hero-gradient opacity-80" />
         <div className="relative max-w-3xl mx-auto text-center reveal-on-scroll opacity-0 translate-y-12 transition-all duration-1000 ease-out">
           <h2 className="font-pixel text-2xl sm:text-5xl text-primary text-shadow-pixel mb-6">
-            READY TO JOIN?
+            KEEP THE VISION ALIVE
           </h2>
           <p className="font-mc text-2xl text-foreground/90 mb-10">
-            A new adventure begins on Saturday, April 25 at 06:00 AM.
+            Season 2 is a discontinued legacy project for now.
             <br />
-            Join our community to stay updated!
+            Stay connected for future community recruitment and updates.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href="https://discord.gg/VZZXY4pFUj"
+              href={communityLinks.discord}
               target="_blank"
               rel="noopener noreferrer"
               className="font-pixel text-xs bg-accent text-accent-foreground px-8 py-5 pixel-border hover:translate-y-1 transition-transform inline-block enchant-glint"
@@ -820,7 +536,7 @@ function Index() {
               className="w-6 h-6 object-contain drop-shadow-md opacity-70 hover:opacity-100 transition-opacity"
             />
             <span className="font-pixel text-[8px] text-muted-foreground uppercase tracking-widest">
-              © 2026 Project SMP 46. All rights reserved.
+              Project SMP 46 • Season 2 legacy archive
             </span>
           </div>
 
@@ -839,7 +555,7 @@ function Index() {
               Rules
             </a>
             <a
-              href="https://discord.gg/VZZXY4pFUj"
+              href={communityLinks.discord}
               target="_blank"
               rel="noopener noreferrer"
               className="font-mc text-lg text-muted-foreground hover:text-[#5865F2] transition-colors"
