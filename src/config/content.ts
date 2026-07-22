@@ -11,10 +11,10 @@ import {
 import type { LucideIcon } from "lucide-react";
 import expImg from "@/assets/EXP35.png";
 import districtImg from "@/assets/12TH.png";
-import azzamImg from "@/assets/azzam.png";
-import kianoImg from "@/assets/kiano.png";
-import sharonImg from "@/assets/sharon.png";
-import yogaImg from "@/assets/Yoga.png";
+import azzamImg from "@/assets/azzam.webp";
+import kianoImg from "@/assets/kiano.webp";
+import sharonImg from "@/assets/sharon.webp";
+import yogaImg from "@/assets/Yoga.webp";
 
 export type Clan = {
   name: string;
