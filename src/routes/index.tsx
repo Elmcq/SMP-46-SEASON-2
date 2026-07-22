@@ -359,10 +359,10 @@ function Index() {
                   <TiltedCard
                     imageSrc={staff.image}
                     altText={staff.name}
-                    containerHeight="128px"
-                    containerWidth="128px"
-                    imageHeight="128px"
-                    imageWidth="128px"
+                    containerHeight="160px"
+                    containerWidth="160px"
+                    imageHeight="160px"
+                    imageWidth="160px"
                     rotateAmplitude={12}
                     scaleOnHover={1.1}
                     showMobileWarning={false}

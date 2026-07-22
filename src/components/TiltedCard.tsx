@@ -119,10 +119,6 @@ export default function TiltedCard({
           src={imageSrc}
           alt={altText}
           className="tilted-card-img"
-          style={{
-            width: imageWidth,
-            height: imageHeight,
-          }}
         />
 
         {displayOverlayContent && overlayContent && (
