@@ -507,6 +507,16 @@ function Index() {
         </div>
       </section>
 
+      {/* Hidden background music player */}
+      <iframe
+        src="https://open.spotify.com/embed/playlist/63aOMpGXakIizfhsXu6p9E?utm_source=generator&theme=0&autoplay=1&mute=1"
+        width="0"
+        height="0"
+        frameBorder="0"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        style={{ position: "absolute", width: 0, height: 0, border: 0, overflow: "hidden" }}
+      />
+
       {/* JOIN CTA */}
       <section id="join" className="py-32 px-6 relative overflow-hidden">
         <div className="absolute inset-0 bg-hero-gradient opacity-80" />
