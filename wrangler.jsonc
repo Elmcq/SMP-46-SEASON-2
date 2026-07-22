@@ -3,7 +3,7 @@
   "name": "smp-46-season-2",
   "compatibility_date": "2025-09-24",
   "compatibility_flags": ["nodejs_compat"],
-  "pages_build_output_dir": "./dist/client",
+  "main": "@tanstack/react-start/server-entry",
   "observability": {
     "logs": {
       "enabled": true,

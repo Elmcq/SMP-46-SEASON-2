@@ -6,7 +6,13 @@ import tsconfigPaths from "vite-tsconfig-paths";
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  plugins: [tailwindcss(), tsconfigPaths(), tanstackStart(), cloudflare(), react()],
+  plugins: [
+    tailwindcss(),
+    tsconfigPaths(),
+    cloudflare({ viteEnvironment: { name: "ssr" } }),
+    tanstackStart(),
+    react(),
+  ],
   resolve: {
     alias: {
       "@": new URL("./src", import.meta.url).pathname,
