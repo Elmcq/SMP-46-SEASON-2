@@ -9,7 +9,6 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import tufImg from "@/assets/TUF.png";
 import expImg from "@/assets/EXP35.png";
 import districtImg from "@/assets/12TH.png";
 import azzamImg from "@/assets/azzam.png";
@@ -29,16 +28,6 @@ export type Clan = {
 };
 
 export const clans: Clan[] = [
-  {
-    name: "TUF",
-    fullName: "THE UNION FEDERATION",
-    leader: "Erlengga",
-    image: tufImg,
-    contactUrl: "https://discord.gg/hgF6TJkE",
-    contactType: "discord",
-    members: 15,
-    status: "RECRUITING",
-  },
   {
     name: "EXPEDITION 35",
     fullName: "INTERNATIONAL SPACE STATION",

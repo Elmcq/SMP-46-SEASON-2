@@ -258,7 +258,7 @@ function Index() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 gap-8">
             {clans.map((clan) => (
               <div
                 key={clan.name}
@@ -315,7 +315,7 @@ function Index() {
                       </span>
                     </div>
                     <div className="flex flex-col items-center gap-1 group/icon">
-                      <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center border border-primary/30 group-hover/icon:bg-primary/30 transition-colors">
+                      <div className="px-3 py-1.5 rounded-full bg-primary/20 flex items-center justify-center border border-primary/30 group-hover/icon:bg-primary/30 transition-colors">
                         <span className="font-pixel text-[8px] text-primary">ARCHIVE</span>
                       </div>
                       <span className="font-pixel text-[6px] text-primary opacity-0 group-hover/icon:opacity-100 transition-opacity">
