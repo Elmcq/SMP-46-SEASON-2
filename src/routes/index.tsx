@@ -7,6 +7,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import TiltedCard from "@/components/TiltedCard";
 import heroImg from "@/assets/hero-smp.jpg";
 import logoImg from "@/assets/smp46-logo.png";
 import { projectConfig } from "@/config/project";
@@ -353,15 +354,19 @@ function Index() {
                 {/* Background Decoration */}
                 <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-current to-transparent opacity-[0.08]" />
 
-                {/* Avatar Profile */}
+                {/* Avatar Profile with TiltedCard */}
                 <div className="relative mb-6 z-10 mt-2">
-                  <img
-                    src={staff.image}
-                    alt={staff.name}
-                    className="w-28 h-28 object-cover rounded-full pixel-border border-4 border-background/80 shadow-xl group-hover:scale-105 transition-transform duration-500"
-                    style={{
-                      objectPosition: staff.name === "Nona Sharon" ? "center 15%" : "center",
-                    }}
+                  <TiltedCard
+                    imageSrc={staff.image}
+                    altText={staff.name}
+                    containerHeight="128px"
+                    containerWidth="128px"
+                    imageHeight="128px"
+                    imageWidth="128px"
+                    rotateAmplitude={12}
+                    scaleOnHover={1.1}
+                    showMobileWarning={false}
+                    showTooltip={false}
                   />
 
                   {/* Role Icon Badge */}
