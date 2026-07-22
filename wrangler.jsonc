@@ -1,16 +1,16 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "project-smp-46",
+  "name": "smp-46-season-2",
   "compatibility_date": "2025-09-24",
   "compatibility_flags": ["nodejs_compat"],
-  "main": "@tanstack/react-start/server-entry",
+  "pages_build_output_dir": "./dist/client",
   "observability": {
     "logs": {
       "enabled": true,
-      "invocation_logs": true,
+      "invocation_logs": true
     },
     "traces": {
-      "enabled": false,
-    },
-  },
+      "enabled": false
+    }
+  }
 }
