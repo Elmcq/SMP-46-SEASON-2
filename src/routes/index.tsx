@@ -32,6 +32,7 @@ const particles = Array.from({ length: 30 }).map((_, i) => ({
 function Index() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [showPlayer, setShowPlayer] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -507,15 +508,28 @@ function Index() {
         </div>
       </section>
 
-      {/* Hidden background music player */}
-      <iframe
-        src="https://open.spotify.com/embed/playlist/63aOMpGXakIizfhsXu6p9E?utm_source=generator&theme=0&autoplay=1&mute=1"
-        width="0"
-        height="0"
-        frameBorder="0"
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-        style={{ position: "absolute", width: 0, height: 0, border: 0, overflow: "hidden" }}
-      />
+      {/* Floating music toggle */}
+      <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
+        {showPlayer && (
+          <div className="bg-background/95 backdrop-blur-xl border border-border/50 p-3 pixel-border shadow-[0_8px_30px_rgb(0,0,0,0.5)] animate-in slide-in-from-bottom-4">
+            <iframe
+              src="https://open.spotify.com/embed/playlist/63aOMpGXakIizfhsXu6p9E?utm_source=generator&theme=0"
+              width="320"
+              height="152"
+              frameBorder="0"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy"
+            />
+          </div>
+        )}
+        <button
+          onClick={() => setShowPlayer(!showPlayer)}
+          className="w-12 h-12 rounded-full bg-primary/80 backdrop-blur-md border border-primary/50 flex items-center justify-center pixel-border hover:scale-110 transition-transform shadow-[0_0_20px_rgba(59,130,246,0.4)]"
+          aria-label="Toggle music player"
+        >
+          <span className="text-xl">{showPlayer ? "⏸" : "🎵"}</span>
+        </button>
+      </div>
 
       {/* JOIN CTA */}
       <section id="join" className="py-32 px-6 relative overflow-hidden">
