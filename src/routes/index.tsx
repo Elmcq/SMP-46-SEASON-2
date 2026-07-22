@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/accordion";
 import TiltedCard from "@/components/TiltedCard";
 import heroImg from "@/assets/hero-smp.jpg";
+import heroVideo from "@/assets/minecraft.mp4";
 import logoImg from "@/assets/smp46-logo.png";
 import { projectConfig } from "@/config/project";
 import { communityLinks, serverConfig } from "@/config/server";
@@ -123,13 +124,15 @@ function Index() {
       {/* HERO */}
       <section className="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img
-            src={heroImg}
-            alt="Pixelated Minecraft sunset landscape"
-            width={1920}
-            height={1024}
-            className="absolute inset-0 w-full h-full object-cover opacity-60 animate-slow-zoom"
-          />
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover opacity-60"
+          >
+            <source src={heroVideo} type="video/mp4" />
+          </video>
           <div className="absolute inset-0 bg-hero-overlay" />
           {particles.map((p) => (
             <div
