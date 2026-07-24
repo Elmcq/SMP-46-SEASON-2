@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { AlertTriangle, MessageCircle } from "lucide-react";
 import {
   Accordion,
@@ -33,12 +33,14 @@ const particles = Array.from({ length: 30 }).map((_, i) => ({
 function Index() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const audioRef = useState<HTMLAudioElement | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
+    if (audioRef.current) return;
     const audio = new Audio(bgMusic);
     audio.loop = true;
     audio.volume = 1;
+    audio.preload = "auto";
     audioRef.current = audio;
 
     const playAudio = () => {
