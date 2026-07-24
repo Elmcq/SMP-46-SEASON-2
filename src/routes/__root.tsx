@@ -2,6 +2,11 @@ import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/r
 import { Home, MessageCircle, AlertTriangle } from "lucide-react";
 
 import appCss from "../styles.css?url";
+import faviconIcon from "../assets/favicon.ico";
+import favicon16 from "../assets/favicon-16x16.png";
+import favicon32 from "../assets/favicon-32x32.png";
+import appleTouchIcon from "../assets/apple-touch-icon.png";
+import siteWebmanifest from "../assets/site.webmanifest";
 
 function NotFoundComponent() {
   return (
@@ -82,6 +87,31 @@ export const Route = createRootRoute({
       {
         rel: "stylesheet",
         href: appCss,
+      },
+      {
+        rel: "icon",
+        href: faviconIcon,
+      },
+      {
+        rel: "icon",
+        type: "image/png",
+        sizes: "16x16",
+        href: favicon16,
+      },
+      {
+        rel: "icon",
+        type: "image/png",
+        sizes: "32x32",
+        href: favicon32,
+      },
+      {
+        rel: "apple-touch-icon",
+        sizes: "180x180",
+        href: appleTouchIcon,
+      },
+      {
+        rel: "manifest",
+        href: siteWebmanifest,
       },
     ],
   }),
