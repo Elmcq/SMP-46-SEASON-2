@@ -11,6 +11,7 @@ import TiltedCard from "@/components/TiltedCard";
 import heroImg from "@/assets/hero-smp.jpg";
 import heroVideo from "@/assets/minecraft.mp4";
 import logoImg from "@/assets/smp46-logo.png";
+import bgMusic from "@/assets/Songs.mp3?url";
 import { projectConfig } from "@/config/project";
 import { communityLinks, serverConfig } from "@/config/server";
 import { clans, faqs, features, rules, staffMembers } from "@/config/content";
@@ -32,6 +33,30 @@ const particles = Array.from({ length: 30 }).map((_, i) => ({
 function Index() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const audioRef = useState<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    const audio = new Audio(bgMusic);
+    audio.loop = true;
+    audio.volume = 1;
+    audioRef.current = audio;
+
+    const playAudio = () => {
+      audio.play().catch(() => {});
+      document.removeEventListener("click", playAudio);
+      document.removeEventListener("scroll", playAudio);
+    };
+
+    document.addEventListener("click", playAudio, { once: true });
+    document.addEventListener("scroll", playAudio, { once: true });
+
+    return () => {
+      audio.pause();
+      audio.src = "";
+      document.removeEventListener("click", playAudio);
+      document.removeEventListener("scroll", playAudio);
+    };
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
