@@ -113,7 +113,7 @@ function Index() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-background text-foreground overflow-x-hidden">
+    <main className="page-atmosphere min-h-screen text-foreground overflow-x-hidden">
       {/* NAV */}
       <nav
         className={`fixed top-4 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-5xl z-50 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
@@ -251,7 +251,7 @@ function Index() {
       {/* ABOUT */}
       <section
         id="about"
-        className="py-24 px-6 border-y border-border bg-secondary/20 overflow-hidden"
+        className="atmosphere-section atmosphere-section-soft py-24 px-6 overflow-hidden"
       >
         <div className="max-w-5xl mx-auto reveal-on-scroll opacity-0 translate-y-12 transition-all duration-1000 ease-out">
           <div className="text-center mb-16">
@@ -281,7 +281,7 @@ function Index() {
       </section>
 
       {/* ALLIANCE SECTION */}
-      <section id="clans" className="py-32 px-6">
+      <section id="clans" className="atmosphere-section py-32 px-6">
         <div className="max-w-7xl mx-auto reveal-on-scroll opacity-0 translate-y-12 transition-all duration-1000 ease-out">
           <div className="text-center mb-20">
             <p className="font-pixel text-[10px] text-accent mb-4 tracking-[0.2em]">
@@ -368,7 +368,7 @@ function Index() {
       </section>
 
       {/* STAFF / TEAM SECTION */}
-      <section id="team" className="py-24 px-6 border-t border-border bg-background">
+      <section id="team" className="atmosphere-section atmosphere-section-soft py-24 px-6">
         <div className="max-w-7xl mx-auto reveal-on-scroll opacity-0 translate-y-12 transition-all duration-1000 ease-out">
           <div className="text-center mb-16">
             <p className="font-pixel text-[10px] text-accent mb-4">// BEHIND THE SCENES</p>
@@ -428,7 +428,7 @@ function Index() {
       </section>
 
       {/* RULES */}
-      <section id="rules" className="py-24 px-6 bg-secondary/10">
+      <section id="rules" className="atmosphere-section py-24 px-6">
         <div className="max-w-4xl mx-auto reveal-on-scroll opacity-0 translate-y-12 transition-all duration-1000 ease-out">
           <div className="text-center mb-16">
             <p className="font-pixel text-[10px] text-accent mb-4">// MUST READ</p>
@@ -500,7 +500,7 @@ function Index() {
       </section>
 
       {/* FAQ SECTION (CHAT STYLE) */}
-      <section id="faq" className="py-24 px-6 border-t border-border bg-background">
+      <section id="faq" className="atmosphere-section atmosphere-section-soft py-24 px-6">
         <div className="max-w-3xl mx-auto reveal-on-scroll opacity-0 translate-y-12 transition-all duration-1000 ease-out">
           <div className="text-center mb-16">
             <p className="font-pixel text-[10px] text-accent mb-4">// Q & A</p>
@@ -538,7 +538,7 @@ function Index() {
       </section>
 
       {/* JOIN CTA */}
-      <section id="join" className="py-32 px-6 relative overflow-hidden">
+      <section id="join" className="atmosphere-section py-32 px-6 overflow-hidden">
         <div className="absolute inset-0 bg-hero-gradient opacity-80" />
         <div className="relative max-w-3xl mx-auto text-center reveal-on-scroll opacity-0 translate-y-12 transition-all duration-1000 ease-out">
           <h2 className="font-pixel text-2xl sm:text-5xl text-primary text-shadow-pixel mb-6">
@@ -574,7 +574,7 @@ function Index() {
       </button>
 
       {/* FOOTER */}
-      <footer className="border-t border-border/50 py-8 px-6 bg-background relative overflow-hidden">
+      <footer className="py-8 px-6 bg-transparent relative overflow-hidden">
         <div className="absolute inset-0 bg-hero-gradient opacity-5 pointer-events-none" />
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
           {/* Logo & Copyright */}
