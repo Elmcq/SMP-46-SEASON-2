@@ -22,6 +22,8 @@ export default function TiltedCard({
   showTooltip = false,
   overlayContent = null,
   displayOverlayContent = false,
+  imageScale = 1,
+  imagePosition = "center",
 }: {
   imageSrc: string;
   altText?: string;
@@ -36,6 +38,8 @@ export default function TiltedCard({
   showTooltip?: boolean;
   overlayContent?: React.ReactNode;
   displayOverlayContent?: boolean;
+  imageScale?: number;
+  imagePosition?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -119,6 +123,10 @@ export default function TiltedCard({
           src={imageSrc}
           alt={altText}
           className="tilted-card-img"
+          style={{
+            transform: `translateZ(0) scale(${imageScale})`,
+            objectPosition: imagePosition,
+          }}
         />
 
         {displayOverlayContent && overlayContent && (
