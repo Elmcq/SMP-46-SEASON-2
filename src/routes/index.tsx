@@ -390,50 +390,47 @@ function Index() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {staffMembers.map((staff, i) => (
-              <div
-                key={i}
-                className={`relative overflow-hidden bg-secondary/30 p-8 pixel-border transition-all duration-300 group hover:-translate-y-2 flex flex-col items-center text-center ${staff.glow}`}
-              >
-                {/* Background Decoration */}
-                <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-current to-transparent opacity-[0.08]" />
-
-                {/* Avatar Profile with TiltedCard */}
-                <div className="relative mb-6 z-10 mt-2">
-                  <TiltedCard
-                    imageSrc={staff.image}
-                    altText={staff.name}
-                    containerHeight="160px"
-                    containerWidth="160px"
-                    imageHeight="160px"
-                    imageWidth="160px"
-                    rotateAmplitude={12}
-                    scaleOnHover={1.1}
-                    showMobileWarning={false}
-                    showTooltip={false}
-                  />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-16">
+            {staffMembers.map((staff) => (
+              <article key={staff.name} className="group flex flex-col items-center text-center">
+                {/* Large avatar without a surrounding card */}
+                <div className="relative mb-7 transition-transform duration-300 group-hover:-translate-y-2">
+                  <div className="transition-[filter] duration-300 group-hover:drop-shadow-[0_0_24px_rgba(74,222,128,0.35)]">
+                    <TiltedCard
+                      imageSrc={staff.image}
+                      altText={staff.name}
+                      containerHeight="clamp(140px, 15vw, 190px)"
+                      containerWidth="clamp(140px, 15vw, 190px)"
+                      imageHeight="clamp(140px, 15vw, 190px)"
+                      imageWidth="clamp(140px, 15vw, 190px)"
+                      rotateAmplitude={10}
+                      scaleOnHover={1.06}
+                      showMobileWarning={false}
+                      showTooltip={false}
+                    />
+                  </div>
 
                   {/* Role Icon Badge */}
                   <div
-                    className={`absolute bottom-0 right-0 w-10 h-10 rounded-full flex items-center justify-center pixel-border ${staff.iconBg} backdrop-blur-md shadow-lg transform group-hover:rotate-12 transition-transform`}
+                    className={`absolute right-1 bottom-1 w-11 h-11 rounded-full flex items-center justify-center pixel-border ${staff.iconBg} backdrop-blur-md shadow-lg transition-transform duration-300 group-hover:rotate-12`}
+                    aria-hidden="true"
                   >
                     <staff.icon className="w-5 h-5 text-white" />
                   </div>
                 </div>
 
-                {/* Text Content */}
-                <h3 className="font-pixel text-base text-foreground mb-2 z-10">{staff.name}</h3>
+                <h3 className="font-pixel text-sm sm:text-base text-foreground mb-3">
+                  {staff.name}
+                </h3>
                 <p
-                  className={`font-pixel text-[10px] mb-5 uppercase tracking-wider z-10 ${staff.textGlow}`}
+                  className={`font-pixel text-[9px] sm:text-[10px] mb-4 uppercase tracking-wider ${staff.textGlow}`}
                 >
                   {staff.role}
                 </p>
-
-                <p className="font-mc text-xl text-muted-foreground leading-relaxed z-10">
+                <p className="font-mc text-xl text-foreground/70 leading-relaxed max-w-[250px]">
                   {staff.desc}
                 </p>
-              </div>
+              </article>
             ))}
           </div>
         </div>
