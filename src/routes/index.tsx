@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/accordion";
 import TiltedCard from "@/components/TiltedCard";
 import heroImg from "@/assets/hero-smp.jpg";
+import headerLogo from "@/assets/Headerlogo.png";
 import logoImg from "@/assets/smp46-logo.png";
 import { mediaConfig } from "@/config/media";
 import { projectConfig } from "@/config/project";
@@ -43,7 +44,7 @@ function Index() {
   useEffect(() => {
     const audio = new Audio(mediaConfig.backgroundMusic);
     audio.loop = true;
-    audio.volume = 0.88;
+    audio.volume = 0.35;
     audio.preload = "none";
     audioRef.current = audio;
 
@@ -193,26 +194,16 @@ function Index() {
         </div>
 
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center py-24">
-          <div className="mx-auto w-28 sm:w-32 h-auto mb-10 rounded-2xl">
+          <div className="mx-auto w-full max-w-[720px] mb-8">
             <img
-              src={logoImg}
-              alt="SMP Negeri 46 Surabaya official logo"
-              width={140}
-              height={140}
-              className="w-full h-auto drop-shadow-[0_0_30px_oklch(0.72_0.22_142/0.7)]"
+              src={headerLogo}
+              alt="Minecraft Project SMP 46 — Beyond Survival"
+              width={1992}
+              height={1254}
+              fetchPriority="high"
+              className="w-full h-auto object-contain drop-shadow-[0_0_30px_rgba(96,165,250,0.25)]"
             />
           </div>
-
-          <div className="inline-block font-pixel text-[10px] text-amber-300 bg-amber-500/10 border border-amber-500/30 px-4 py-2 pixel-border mb-8">
-            {projectConfig.status}
-          </div>
-
-          <h1 className="font-pixel text-xl sm:text-4xl md:text-6xl text-primary text-shadow-pixel leading-tight mb-4 tracking-tighter">
-            PROJECT SMP 46
-          </h1>
-          <p className="font-mc text-xl sm:text-4xl text-accent mb-8 uppercase tracking-widest">
-            Beyond Survival. Build Together.
-          </p>
 
           <div className="max-w-2xl mx-auto mb-12">
             <p className="font-mc text-2xl text-foreground/90 leading-snug">
