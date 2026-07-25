@@ -407,8 +407,6 @@ function Index() {
                       scaleOnHover={1.06}
                       showMobileWarning={false}
                       showTooltip={false}
-                      imageScale={staff.name === "Nona Sharon" ? 1.4 : 1}
-                      imagePosition={staff.name === "Nona Sharon" ? "center 28%" : "center"}
                     />
                   </div>
 
