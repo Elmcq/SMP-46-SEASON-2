@@ -43,7 +43,7 @@ function Index() {
   useEffect(() => {
     const audio = new Audio(mediaConfig.backgroundMusic);
     audio.loop = true;
-    audio.volume = 0.65;
+    audio.volume = 0.88;
     audio.preload = "none";
     audioRef.current = audio;
 
