@@ -64,3 +64,11 @@ Update these files when project information changes instead of editing the page 
 The project includes `wrangler.jsonc` for Cloudflare deployment and uses TanStack React Start's server entry. The deployment environment should use Node.js 22 or newer and run the same `npm run build` command used by CI.
 
 Before publishing a deployment, verify that community invite links and archived server information are still appropriate for public display. The Season 2 page must remain clearly marked as discontinued for now; do not add a launch countdown or automatic live status without an intentional project-status update.
+
+## Media delivery
+
+The hero video and background music are hosted on Cloudinary and configured in `src/config/media.ts`. Large MP4/MP3 files should not be committed to `src/assets/`.
+
+- The hero video uses the local `hero-smp.jpg` as a poster while the Cloudinary video loads.
+- Background music uses `preload="none"` and starts only after the visitor presses the music button.
+- Update the public Cloudinary delivery URLs in `src/config/media.ts` when media changes.

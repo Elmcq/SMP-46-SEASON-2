@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect, useRef } from "react";
-import { AlertTriangle, MessageCircle } from "lucide-react";
+import { AlertTriangle, MessageCircle, Volume2, VolumeX } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -9,9 +9,8 @@ import {
 } from "@/components/ui/accordion";
 import TiltedCard from "@/components/TiltedCard";
 import heroImg from "@/assets/hero-smp.jpg";
-import heroVideo from "@/assets/minecraft.mp4";
 import logoImg from "@/assets/smp46-logo.png";
-import bgMusic from "@/assets/Songs.mp3?url";
+import { mediaConfig } from "@/config/media";
 import { projectConfig } from "@/config/project";
 import { communityLinks, serverConfig } from "@/config/server";
 import { clans, faqs, features, rules, staffMembers } from "@/config/content";
@@ -20,45 +19,58 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+const seededValue = (index: number, salt: number) => {
+  const value = Math.sin((index + 1) * 12.9898 + salt * 78.233) * 43758.5453;
+  return value - Math.floor(value);
+};
+
 const particles = Array.from({ length: 30 }).map((_, i) => ({
   id: i,
-  left: `${Math.random() * 100}%`,
-  top: `${Math.random() * 100}%`,
-  width: `${Math.random() * 6 + 2}px`,
-  height: `${Math.random() * 6 + 2}px`,
-  animationDuration: `${Math.random() * 15 + 10}s`,
-  animationDelay: `${Math.random() * 5}s`,
+  left: `${seededValue(i, 1) * 100}%`,
+  top: `${seededValue(i, 2) * 100}%`,
+  width: `${seededValue(i, 3) * 6 + 2}px`,
+  height: `${seededValue(i, 4) * 6 + 2}px`,
+  animationDuration: `${seededValue(i, 5) * 15 + 10}s`,
+  animationDelay: `${seededValue(i, 6) * 5}s`,
 }));
 
 function Index() {
   const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const [isMusicPlaying, setIsMusicPlaying] = useState(false);
+  const lastScrollYRef = useRef(0);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    if (audioRef.current) return;
-    const audio = new Audio(bgMusic);
+    const audio = new Audio(mediaConfig.backgroundMusic);
     audio.loop = true;
-    audio.volume = 1;
-    audio.preload = "auto";
+    audio.volume = 0.35;
+    audio.preload = "none";
     audioRef.current = audio;
 
-    const playAudio = () => {
-      audio.play().catch(() => {});
-      document.removeEventListener("click", playAudio);
-      document.removeEventListener("scroll", playAudio);
-    };
-
-    document.addEventListener("click", playAudio, { once: true });
-    document.addEventListener("scroll", playAudio, { once: true });
+    const handlePlay = () => setIsMusicPlaying(true);
+    const handlePause = () => setIsMusicPlaying(false);
+    audio.addEventListener("play", handlePlay);
+    audio.addEventListener("pause", handlePause);
 
     return () => {
       audio.pause();
+      audio.removeEventListener("play", handlePlay);
+      audio.removeEventListener("pause", handlePause);
       audio.src = "";
-      document.removeEventListener("click", playAudio);
-      document.removeEventListener("scroll", playAudio);
+      audioRef.current = null;
     };
   }, []);
+
+  const toggleMusic = async () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    if (audio.paused) {
+      await audio.play().catch(() => setIsMusicPlaying(false));
+    } else {
+      audio.pause();
+    }
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -81,22 +93,23 @@ function Index() {
   }, []);
 
   useEffect(() => {
+    let frameRequested = false;
+
     const controlNavbar = () => {
-      if (typeof window !== "undefined") {
-        if (window.scrollY > lastScrollY && window.scrollY > 100) {
-          setIsVisible(false);
-        } else {
-          setIsVisible(true);
-        }
-        setLastScrollY(window.scrollY);
-      }
+      if (frameRequested) return;
+      frameRequested = true;
+
+      window.requestAnimationFrame(() => {
+        const currentScrollY = window.scrollY;
+        setIsVisible(currentScrollY <= lastScrollYRef.current || currentScrollY <= 100);
+        lastScrollYRef.current = currentScrollY;
+        frameRequested = false;
+      });
     };
 
-    window.addEventListener("scroll", controlNavbar);
-    return () => {
-      window.removeEventListener("scroll", controlNavbar);
-    };
-  }, [lastScrollY]);
+    window.addEventListener("scroll", controlNavbar, { passive: true });
+    return () => window.removeEventListener("scroll", controlNavbar);
+  }, []);
 
   return (
     <main className="min-h-screen bg-background text-foreground overflow-x-hidden">
@@ -156,9 +169,11 @@ function Index() {
             loop
             muted
             playsInline
+            preload="metadata"
+            poster={heroImg}
             className="absolute inset-0 w-full h-full object-cover opacity-60"
           >
-            <source src={heroVideo} type="video/mp4" />
+            <source src={mediaConfig.heroVideo} type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-hero-overlay" />
           {particles.map((p) => (
@@ -558,6 +573,17 @@ function Index() {
           </div>
         </div>
       </section>
+
+      <button
+        type="button"
+        onClick={toggleMusic}
+        aria-pressed={isMusicPlaying}
+        aria-label={isMusicPlaying ? "Pause background music" : "Play background music"}
+        className="fixed right-4 bottom-4 sm:right-6 sm:bottom-6 z-50 min-h-11 px-4 flex items-center gap-3 bg-background/90 border border-primary/40 text-foreground pixel-border backdrop-blur-md hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
+      >
+        {isMusicPlaying ? <Volume2 className="w-5 h-5 text-primary" /> : <VolumeX className="w-5 h-5 text-muted-foreground" />}
+        <span className="font-pixel text-[8px]">{isMusicPlaying ? "MUSIC ON" : "PLAY MUSIC"}</span>
+      </button>
 
       {/* FOOTER */}
       <footer className="border-t border-border/50 py-8 px-6 bg-background relative overflow-hidden">
