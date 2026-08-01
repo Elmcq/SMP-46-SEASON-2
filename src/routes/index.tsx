@@ -412,37 +412,20 @@ function Index() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-16">
             {staffMembers.map((staff) => (
               <article key={staff.name} className="group flex flex-col items-center text-center">
-                {/* Large avatar without a surrounding card */}
-                <div className="relative mb-7 transition-transform duration-300 group-hover:-translate-y-2">
+                <div className="mb-7 transition-transform duration-300 group-hover:-translate-y-2">
                   <div className="transition-[filter] duration-300 group-hover:drop-shadow-[0_0_24px_rgba(74,222,128,0.35)]">
                     <TiltedCard
                       imageSrc={staff.image}
                       altText={staff.name}
-                      containerHeight="clamp(140px, 15vw, 190px)"
-                      containerWidth="clamp(140px, 15vw, 190px)"
-                      imageHeight="clamp(140px, 15vw, 190px)"
-                      imageWidth="clamp(140px, 15vw, 190px)"
+                      containerHeight="clamp(170px, 18vw, 230px)"
+                      containerWidth="clamp(170px, 18vw, 230px)"
+                      imageHeight="clamp(170px, 18vw, 230px)"
+                      imageWidth="clamp(170px, 18vw, 230px)"
                       rotateAmplitude={10}
                       scaleOnHover={1.06}
                       showMobileWarning={false}
                       showTooltip={false}
                     />
-                  </div>
-
-                  {/* Role Icon Badge */}
-                  <div
-                    className={`absolute right-1 bottom-1 w-11 h-11 rounded-full flex items-center justify-center pixel-border ${staff.iconBg} backdrop-blur-md shadow-lg transition-transform duration-300 group-hover:rotate-12 overflow-hidden`}
-                    aria-hidden="true"
-                  >
-                    {staff.badgeImage ? (
-                      <img
-                        src={staff.badgeImage}
-                        alt=""
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <staff.icon className="w-5 h-5 text-white" />
-                    )}
                   </div>
                 </div>
 
