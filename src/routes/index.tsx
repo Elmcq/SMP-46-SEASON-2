@@ -16,6 +16,30 @@ import { projectConfig } from "@/config/project";
 import { communityLinks, serverConfig } from "@/config/server";
 import { clans, faqs, features, rules, staffMembers } from "@/config/content";
 
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Project SMP 46",
+  alternateName: "SMP 46 Minecraft",
+  url: "https://smpn46projectminecraft.biz.id/",
+  description:
+    "Project SMP 46 Season 2 — a discontinued legacy Minecraft community project that may return when the community is ready.",
+  inLanguage: ["en", "id"],
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.a,
+    },
+  })),
+};
+
 export const Route = createFileRoute("/")({
   component: Index,
 });
@@ -114,6 +138,10 @@ function Index() {
 
   return (
     <main className="page-atmosphere min-h-screen text-foreground overflow-x-hidden">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <h1 className="sr-only">Project SMP 46 — Minecraft Bedrock Community Archive</h1>
+
       {/* NAV */}
       <nav
         className={`fixed top-4 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-5xl z-50 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${

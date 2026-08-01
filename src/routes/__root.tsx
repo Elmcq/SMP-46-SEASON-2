@@ -80,10 +80,35 @@ export const Route = createRootRoute({
         content:
           "Season 2 has been discontinued for now and may return in the future when the community is ready.",
       },
+      {
+        property: "og:image",
+        content: "https://smpn46projectminecraft.biz.id/Headerlogo.png",
+      },
+      {
+        property: "og:url",
+        content: "https://smpn46projectminecraft.biz.id/",
+      },
+      { property: "og:site_name", content: "Project SMP 46" },
+      { property: "og:locale", content: "id_ID" },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Project SMP 46 — Season 2 Legacy Archive" },
+      {
+        name: "twitter:description",
+        content:
+          "Season 2 has been discontinued for now and may return in the future when the community is ready.",
+      },
+      {
+        name: "twitter:image",
+        content: "https://smpn46projectminecraft.biz.id/Headerlogo.png",
+      },
+      { name: "theme-color", content: "#0f172a" },
     ],
     links: [
+      {
+        rel: "canonical",
+        href: "https://smpn46projectminecraft.biz.id/",
+      },
       {
         rel: "stylesheet",
         href: appCss,
