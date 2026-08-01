@@ -67,14 +67,14 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Project SMP 46 — Season 2 Legacy Archive" },
+      { title: "SMPN 46 Project Minecraft" },
       {
         name: "description",
         content:
           "Project SMP 46 Season 2 — a discontinued legacy Minecraft community project that may return when the community is ready.",
       },
       { name: "author", content: "Project SMP 46" },
-      { property: "og:title", content: "Project SMP 46 — Season 2 Legacy Archive" },
+      { property: "og:title", content: "SMPN 46 Project Minecraft" },
       {
         property: "og:description",
         content:
@@ -92,7 +92,7 @@ export const Route = createRootRoute({
       { property: "og:locale", content: "id_ID" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Project SMP 46 — Season 2 Legacy Archive" },
+      { name: "twitter:title", content: "SMPN 46 Project Minecraft" },
       {
         name: "twitter:description",
         content:
