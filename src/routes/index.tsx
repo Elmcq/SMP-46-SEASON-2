@@ -431,10 +431,18 @@ function Index() {
 
                   {/* Role Icon Badge */}
                   <div
-                    className={`absolute right-1 bottom-1 w-11 h-11 rounded-full flex items-center justify-center pixel-border ${staff.iconBg} backdrop-blur-md shadow-lg transition-transform duration-300 group-hover:rotate-12`}
+                    className={`absolute right-1 bottom-1 w-11 h-11 rounded-full flex items-center justify-center pixel-border ${staff.iconBg} backdrop-blur-md shadow-lg transition-transform duration-300 group-hover:rotate-12 overflow-hidden`}
                     aria-hidden="true"
                   >
-                    <staff.icon className="w-5 h-5 text-white" />
+                    {staff.badgeImage ? (
+                      <img
+                        src={staff.badgeImage}
+                        alt=""
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <staff.icon className="w-5 h-5 text-white" />
+                    )}
                   </div>
                 </div>
 

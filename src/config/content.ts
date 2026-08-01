@@ -15,6 +15,8 @@ import azzamImg from "@/assets/azzam.webp";
 import kianoImg from "@/assets/kiano.webp";
 import sharonImg from "@/assets/sharon.webp";
 import yogaImg from "@/assets/Yoga.webp";
+import chibiAzzamImg from "@/assets/chibi-azzam.gif";
+import chibiYogaImg from "@/assets/chibi.yoga.gif";
 
 export type Clan = {
   name: string;
@@ -61,6 +63,7 @@ export type StaffMember = {
   glow: string;
   textGlow: string;
   iconBg: string;
+  badgeImage?: string;
 };
 
 export const staffMembers: StaffMember[] = [
@@ -93,6 +96,7 @@ export const staffMembers: StaffMember[] = [
     glow: "shadow-[0_0_15px_rgba(59,130,246,0.3)] hover:shadow-[0_0_30px_rgba(59,130,246,0.6)] border-blue-500/30",
     textGlow: "text-blue-400 drop-shadow-[0_0_8px_rgba(59,130,246,0.8)]",
     iconBg: "bg-blue-500/20 text-blue-400",
+    badgeImage: chibiAzzamImg,
   },
   {
     name: "Yoga",
@@ -103,6 +107,7 @@ export const staffMembers: StaffMember[] = [
     glow: "shadow-[0_0_15px_rgba(34,197,94,0.3)] hover:shadow-[0_0_30px_rgba(34,197,94,0.6)] border-green-500/30",
     textGlow: "text-green-400 drop-shadow-[0_0_8px_rgba(34,197,94,0.8)]",
     iconBg: "bg-green-500/20 text-green-400",
+    badgeImage: chibiYogaImg,
   },
 ];
 
