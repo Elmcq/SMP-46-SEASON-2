@@ -414,18 +414,27 @@ function Index() {
               <article key={staff.name} className="group flex flex-col items-center text-center">
                 <div className="mb-7 transition-transform duration-300 group-hover:-translate-y-2">
                   <div className="transition-[filter] duration-300 group-hover:drop-shadow-[0_0_24px_rgba(74,222,128,0.35)]">
-                    <TiltedCard
-                      imageSrc={staff.image}
-                      altText={staff.name}
-                      containerHeight="clamp(170px, 18vw, 230px)"
-                      containerWidth="clamp(170px, 18vw, 230px)"
-                      imageHeight="clamp(170px, 18vw, 230px)"
-                      imageWidth="clamp(170px, 18vw, 230px)"
-                      rotateAmplitude={10}
-                      scaleOnHover={1.06}
-                      showMobileWarning={false}
-                      showTooltip={false}
-                    />
+                    {staff.placeholder ? (
+                      <div
+                        className="team-placeholder"
+                        style={{ width: "clamp(170px, 18vw, 230px)", height: "clamp(170px, 18vw, 230px)" }}
+                      >
+                        <div className="team-placeholder-text">COMING<br />SOON</div>
+                      </div>
+                    ) : (
+                      <TiltedCard
+                        imageSrc={staff.image}
+                        altText={staff.name}
+                        containerHeight="clamp(170px, 18vw, 230px)"
+                        containerWidth="clamp(170px, 18vw, 230px)"
+                        imageHeight="clamp(170px, 18vw, 230px)"
+                        imageWidth="clamp(170px, 18vw, 230px)"
+                        rotateAmplitude={10}
+                        scaleOnHover={1.06}
+                        showMobileWarning={false}
+                        showTooltip={false}
+                      />
+                    )}
                   </div>
                 </div>
 

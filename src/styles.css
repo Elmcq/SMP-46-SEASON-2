@@ -403,3 +403,22 @@
     animation-iteration-count: 1 !important;
   }
 }
+
+.team-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 3px dashed oklch(0.4 0.06 245);
+  border-radius: 18px;
+  background: oklch(0.18 0.04 255);
+  image-rendering: pixelated;
+}
+
+.team-placeholder-text {
+  font-family: "Press Start 2P", monospace;
+  font-size: 8px;
+  color: oklch(0.6 0.04 245);
+  text-align: center;
+  line-height: 1.6;
+}

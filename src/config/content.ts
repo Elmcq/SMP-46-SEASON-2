@@ -61,6 +61,7 @@ export type StaffMember = {
   glow: string;
   textGlow: string;
   iconBg: string;
+  placeholder?: boolean;
 };
 
 export const staffMembers: StaffMember[] = [
@@ -73,6 +74,7 @@ export const staffMembers: StaffMember[] = [
     glow: "shadow-[0_0_15px_rgba(236,72,153,0.3)] hover:shadow-[0_0_30px_rgba(236,72,153,0.6)] border-pink-500/30",
     textGlow: "text-pink-400 drop-shadow-[0_0_8px_rgba(236,72,153,0.8)]",
     iconBg: "bg-pink-500/20 text-pink-400",
+    placeholder: true,
   },
   {
     name: "Kiano",
@@ -83,6 +85,7 @@ export const staffMembers: StaffMember[] = [
     glow: "shadow-[0_0_15px_rgba(245,158,11,0.3)] hover:shadow-[0_0_30px_rgba(245,158,11,0.6)] border-amber-500/30",
     textGlow: "text-amber-400 drop-shadow-[0_0_8px_rgba(245,158,11,0.8)]",
     iconBg: "bg-amber-500/20 text-amber-400",
+    placeholder: true,
   },
   {
     name: "Azzam",
