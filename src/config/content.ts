@@ -66,7 +66,7 @@ export type StaffMember = {
 
 export const staffMembers: StaffMember[] = [
   {
-    name: "Nona Sharon",
+    name: "Sharon",
     role: "Koor Dokum",
     desc: "Mengurus dokumentasi, media, dan mengabadikan momen perjalanan Season 2.",
     icon: Camera,
