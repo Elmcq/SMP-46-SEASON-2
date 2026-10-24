@@ -175,7 +175,7 @@ function Index() {
 
       {/* NAV */}
       <nav
-        className={`fixed top-4 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-5xl z-50 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
+        className={`fixed top-4 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-5xl z-50 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
           isVisible ? "translate-y-0 opacity-100" : "-translate-y-[150%] opacity-0"
         }`}
       >
