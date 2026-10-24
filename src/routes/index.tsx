@@ -64,6 +64,7 @@ function Index() {
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
   const lastScrollYRef = useRef(0);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const heroVideoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
     const audio = new Audio(mediaConfig.backgroundMusic);
@@ -83,6 +84,30 @@ function Index() {
       audio.removeEventListener("pause", handlePause);
       audio.src = "";
       audioRef.current = null;
+    };
+  }, []);
+
+  useEffect(() => {
+    const video = heroVideoRef.current;
+    if (!video) return;
+
+    const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updatePlayback = () => {
+      if (motionPreference.matches) {
+        video.pause();
+        video.currentTime = 0;
+        return;
+      }
+
+      void video.play().catch(() => undefined);
+    };
+
+    updatePlayback();
+    motionPreference.addEventListener("change", updatePlayback);
+
+    return () => {
+      motionPreference.removeEventListener("change", updatePlayback);
+      video.pause();
     };
   }, []);
 
@@ -200,7 +225,7 @@ function Index() {
       <section className="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <video
-            autoPlay
+            ref={heroVideoRef}
             loop
             muted
             playsInline
