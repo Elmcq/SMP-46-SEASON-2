@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/accordion";
 import TiltedCard from "@/components/TiltedCard";
 import heroImg from "@/assets/hero-smp.jpg";
-import headerLogo from "@/assets/Headerlogo.png";
+import headerLogo from "@/assets/Headerlogo.webp";
 import logoImg from "@/assets/smp46-logo.png";
 import { mediaConfig } from "@/config/media";
 import { projectConfig } from "@/config/project";
