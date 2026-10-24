@@ -138,8 +138,14 @@ function Index() {
 
   return (
     <main className="page-atmosphere min-h-screen text-foreground overflow-x-hidden">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <h1 className="sr-only">Project SMP 46 — Minecraft Bedrock Community Archive</h1>
 
       {/* NAV */}
@@ -417,9 +423,16 @@ function Index() {
                     {staff.placeholder ? (
                       <div
                         className="team-placeholder"
-                        style={{ width: "clamp(170px, 18vw, 230px)", height: "clamp(170px, 18vw, 230px)" }}
+                        style={{
+                          width: "clamp(170px, 18vw, 230px)",
+                          height: "clamp(170px, 18vw, 230px)",
+                        }}
                       >
-                        <div className="team-placeholder-text">COMING<br />SOON</div>
+                        <div className="team-placeholder-text">
+                          COMING
+                          <br />
+                          SOON
+                        </div>
                       </div>
                     ) : (
                       <TiltedCard
@@ -597,7 +610,11 @@ function Index() {
         aria-label={isMusicPlaying ? "Pause background music" : "Play background music"}
         className="fixed right-4 bottom-4 sm:right-6 sm:bottom-6 z-50 min-h-11 px-4 flex items-center gap-3 bg-background/90 border border-primary/40 text-foreground pixel-border backdrop-blur-md hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
       >
-        {isMusicPlaying ? <Volume2 className="w-5 h-5 text-primary" /> : <VolumeX className="w-5 h-5 text-muted-foreground" />}
+        {isMusicPlaying ? (
+          <Volume2 className="w-5 h-5 text-primary" />
+        ) : (
+          <VolumeX className="w-5 h-5 text-muted-foreground" />
+        )}
         <span className="font-pixel text-[8px]">{isMusicPlaying ? "MUSIC ON" : "PLAY MUSIC"}</span>
       </button>
 
