@@ -47,7 +47,7 @@ function NotFoundComponent() {
             </Link>
 
             <a
-              href="https://discord.gg/VZZXY4pFUj"
+              href="https://discord.gg/cWrcb2gJfh"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3 font-pixel text-xs bg-secondary text-foreground px-6 sm:px-8 py-4 sm:py-5 pixel-border hover:-translate-y-1 transition-transform group w-full sm:w-auto justify-center hover:bg-secondary/80"

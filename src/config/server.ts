@@ -22,5 +22,5 @@ export const serverConfig = {
 export const showLegacyServerList = false;
 
 export const communityLinks = {
-  discord: "https://discord.gg/VZZXY4pFUj",
+  discord: "https://discord.gg/cWrcb2gJfh",
 } as const;
