@@ -15,11 +15,11 @@ import { useApplicationClock, useRevealOnScroll } from "@/components/sections/ho
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "Project SMP 46",
+  name: "PROJECT SMP 46 — Minecraft Community for SMPN 46 Surabaya Students",
   alternateName: "SMP 46 Minecraft",
   url: "https://smpn46projectminecraft.biz.id/",
   description:
-    "Project SMP 46 Season 2 — a discontinued legacy Minecraft community project that may return when the community is ready.",
+    "A Minecraft community exclusively for SMPN 46 Surabaya students. Build together on Java & Bedrock. Currently in preparation, registration info coming soon.",
   inLanguage: ["en", "id"],
 };
 
@@ -54,7 +54,9 @@ function Index() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <h1 className="sr-only">Project SMP 46 — Minecraft Bedrock Community Archive</h1>
+      <h1 className="sr-only">
+        PROJECT SMP 46 — Minecraft Community for SMPN 46 Surabaya Students
+      </h1>
 
       <Navbar />
       <Hero now={now} />

@@ -221,7 +221,7 @@ export const faqs = [
   },
   {
     q: "Platform apa yang dipakai?",
-    a: "Server menggunakan Minecraft Bedrock Edition.",
+    a: "Server menggunakan Minecraft Java & Bedrock Edition.",
   },
   {
     q: "Apa itu fase uji coba?",

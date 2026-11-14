@@ -35,7 +35,7 @@ export function AboutSection() {
           ))}
         </div>
         <p className="font-mc text-sm text-muted-foreground text-center leading-relaxed mt-8">
-          Minecraft Bedrock Edition • Open for SMPN 46 students only • Apply through the Apply Now
+          Minecraft Java & Bedrock • Open for SMPN 46 students only • Apply through the Apply Now
           button on this page when applications open.
         </p>
       </div>

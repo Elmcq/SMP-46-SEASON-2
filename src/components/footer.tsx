@@ -81,22 +81,24 @@ export function Footer() {
           </nav>
         </div>
 
-        <div className="flex flex-col gap-3 border-t border-border/60 py-5 pr-28 font-mc text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between sm:pr-32 md:pr-36">
-          <p>© 2026 SMPN 46 Project Minecraft. Student community project of SMPN 46 Surabaya.</p>
-          <p>
-            Student community project. Not an official Minecraft product. Not affiliated with Mojang
-            or Microsoft.
-          </p>
-          <p className="inline-flex items-center gap-1.5">
-            <span>Built by</span>
+        <div className="flex flex-col items-start gap-3 border-t border-border/60 py-5 font-mc text-xs text-muted-foreground md:flex-row md:justify-between md:gap-4">
+          <div className="flex flex-col gap-1">
+            <p>
+              © 2026 SMPN 46 Project Minecraft. A student community project for SMPN 46 Surabaya
+              students.
+            </p>
+            <p>Not an official Minecraft product. Not affiliated with Mojang or Microsoft.</p>
+          </div>
+          <p className="sm:whitespace-nowrap">
             <a
-              className="inline-flex items-center gap-1.5 text-foreground/80 transition-colors hover:text-primary"
+              className="inline-flex items-center gap-2 text-foreground/80 transition-colors hover:text-primary"
               href={githubUrl}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Built by Azzam (Elmcq), Administrator on GitHub"
             >
-              <GithubIcon className="size-3.5" />
-              Azzam - Elmcq Administrator
+              <GithubIcon className="h-4 w-4" />
+              Built by Azzam (Elmcq) · Administrator
             </a>
           </p>
         </div>

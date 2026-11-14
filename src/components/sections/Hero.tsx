@@ -110,7 +110,7 @@ export function Hero({ now }: { now: number }) {
         </div>
 
         <p className="mt-8 font-mc text-base text-muted-foreground sm:text-lg">
-          Minecraft Bedrock Edition · {projectConfig.season} Archived
+          Minecraft Java & Bedrock • {projectConfig.season} Archived
         </p>
 
         {showLegacyServerList && (
