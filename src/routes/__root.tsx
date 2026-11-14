@@ -81,13 +81,19 @@ export const Route = createRootRoute({
           "Minecraft community for SMPN 46 Surabaya students. Preparation phase, registration announced soon.",
       },
       {
+        property: "og:image",
+        content: "https://smpn46projectminecraft.biz.id/og-image.jpg",
+      },
+      { property: "og:image:width", content: "800" },
+      { property: "og:image:height", content: "800" },
+      {
         property: "og:url",
         content: "https://smpn46projectminecraft.biz.id/",
       },
       { property: "og:site_name", content: "Project SMP 46" },
       { property: "og:locale", content: "id_ID" },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:card", content: "summary" },
       { name: "twitter:title", content: "PROJECT SMP 46 – Build Together in Minecraft" },
       {
         name: "twitter:description",
