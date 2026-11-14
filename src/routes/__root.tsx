@@ -67,22 +67,18 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "SMPN 46 Project Minecraft" },
+      { title: "PROJECT SMP 46 – Minecraft Community for SMPN 46 Surabaya Students" },
       {
         name: "description",
         content:
-          "Project SMP 46 Season 2 — a discontinued legacy Minecraft community project that may return when the community is ready.",
+          "A Minecraft community exclusively for SMPN 46 Surabaya students. Build together on Java & Bedrock. Currently in preparation, registration info coming soon.",
       },
       { name: "author", content: "Project SMP 46" },
-      { property: "og:title", content: "SMPN 46 Project Minecraft" },
+      { property: "og:title", content: "PROJECT SMP 46 – Build Together in Minecraft" },
       {
         property: "og:description",
         content:
-          "Season 2 has been discontinued for now and may return in the future when the community is ready.",
-      },
-      {
-        property: "og:image",
-        content: "https://smpn46projectminecraft.biz.id/Headerlogo.png",
+          "Minecraft community for SMPN 46 Surabaya students. Preparation phase, registration announced soon.",
       },
       {
         property: "og:url",
@@ -92,15 +88,11 @@ export const Route = createRootRoute({
       { property: "og:locale", content: "id_ID" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "SMPN 46 Project Minecraft" },
+      { name: "twitter:title", content: "PROJECT SMP 46 – Build Together in Minecraft" },
       {
         name: "twitter:description",
         content:
-          "Season 2 has been discontinued for now and may return in the future when the community is ready.",
-      },
-      {
-        name: "twitter:image",
-        content: "https://smpn46projectminecraft.biz.id/Headerlogo.png",
+          "Minecraft community for SMPN 46 Surabaya students. Preparation phase, registration announced soon.",
       },
       { name: "theme-color", content: "#0f172a" },
     ],
