@@ -19,6 +19,8 @@ export const serverConfig = {
   },
 } as const;
 
+export const showLegacyServerList = false;
+
 export const communityLinks = {
   discord: "https://discord.gg/VZZXY4pFUj",
 } as const;

@@ -40,7 +40,7 @@ function NotFoundComponent() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <Link
               to="/"
-              className="flex items-center gap-3 font-pixel text-[10px] sm:text-xs bg-primary text-primary-foreground px-6 sm:px-8 py-4 sm:py-5 pixel-border hover:-translate-y-1 transition-transform group enchant-glint w-full sm:w-auto justify-center"
+              className="flex items-center gap-3 font-pixel text-xs bg-primary text-primary-foreground px-6 sm:px-8 py-4 sm:py-5 pixel-border hover:-translate-y-1 transition-transform group enchant-glint w-full sm:w-auto justify-center"
             >
               <Home className="w-4 h-4 group-hover:scale-110 transition-transform" />
               BACK TO SPAWN
@@ -50,7 +50,7 @@ function NotFoundComponent() {
               href="https://discord.gg/VZZXY4pFUj"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 font-pixel text-[10px] sm:text-xs bg-secondary text-foreground px-6 sm:px-8 py-4 sm:py-5 pixel-border hover:-translate-y-1 transition-transform group w-full sm:w-auto justify-center hover:bg-secondary/80"
+              className="flex items-center gap-3 font-pixel text-xs bg-secondary text-foreground px-6 sm:px-8 py-4 sm:py-5 pixel-border hover:-translate-y-1 transition-transform group w-full sm:w-auto justify-center hover:bg-secondary/80"
             >
               <MessageCircle className="w-4 h-4 group-hover:rotate-12 transition-transform text-[#5865F2]" />
               CONTACT STAFF

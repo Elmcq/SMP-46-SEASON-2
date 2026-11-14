@@ -34,3 +34,6 @@ dist-ssr
 # Large media is hosted on Cloudinary
 src/assets/minecraft.mp4
 src/assets/Songs.mp3
+skills/
+skills-lock.json
+src/assets/backups/

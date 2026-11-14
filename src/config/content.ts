@@ -1,68 +1,32 @@
-import {
-  AlertTriangle,
-  Camera,
-  Check,
-  Hammer,
-  LogIn,
-  Megaphone,
-  Shield,
-  ShieldCheck,
-} from "lucide-react";
+import { Building2, Camera, Hammer, Leaf, Megaphone, Shield, Trophy } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import expImg from "@/assets/EXP35.png";
-import districtImg from "@/assets/12TH.png";
+import { applicationConfig } from "@/config/applications";
 import azzamImg from "@/assets/chibi-azzam.gif";
-import kianoImg from "@/assets/kiano.webp";
-import sharonImg from "@/assets/sharon.webp";
 import yogaImg from "@/assets/chibi.yoga.gif";
 
 export type Clan = {
   name: string;
-  fullName: string;
   leader: string;
-  image: string;
-  contactUrl: string;
-  contactType: "discord" | "whatsapp";
-  members: number;
-  status: string;
 };
 
 export const clans: Clan[] = [
-  {
-    name: "EXPEDITION 35",
-    fullName: "INTERNATIONAL SPACE STATION",
-    leader: "Azzam",
-    image: expImg,
-    contactUrl:
-      "https://wa.me/6281335758501?text=Halo%20klan%20EXPEDITION%2035%2C%20saya%20ingin%20bergabung%20ke%20server%20SMP%2046.",
-    contactType: "whatsapp",
-    members: 12,
-    status: "FULL",
-  },
-  {
-    name: "12TH DISTRICT",
-    fullName: "12TH DISTRICT",
-    leader: "Altan",
-    image: districtImg,
-    contactUrl:
-      "https://wa.me/6282313730860?text=Halo%20klan%2012TH%20DISTRICT%2C%20saya%20ingin%20bergabung%20ke%20server%20SMP%2046.",
-    contactType: "whatsapp",
-    members: 8,
-    status: "RECRUITING",
-  },
+  { name: "WHITE MOON", leader: "Azzam" },
+  { name: "MYSTERIOUS FORCE", leader: "Yoga" },
+  { name: "DISTRICT 12TH", leader: "Altan" },
 ];
 
-export type StaffMember = {
+type StaffMemberBase = {
   name: string;
   role: string;
   desc: string;
   icon: LucideIcon;
-  image: string;
   glow: string;
   textGlow: string;
   iconBg: string;
-  placeholder?: boolean;
 };
+
+export type StaffMember = StaffMemberBase &
+  ({ placeholder: true; image?: never } | { placeholder?: false; image: string });
 
 export const staffMembers: StaffMember[] = [
   {
@@ -70,7 +34,6 @@ export const staffMembers: StaffMember[] = [
     role: "Koor Dokum",
     desc: "Mengurus dokumentasi, media, dan mengabadikan momen perjalanan Season 2.",
     icon: Camera,
-    image: sharonImg,
     glow: "shadow-[0_0_15px_rgba(236,72,153,0.3)] hover:shadow-[0_0_30px_rgba(236,72,153,0.6)] border-pink-500/30",
     textGlow: "text-pink-400 drop-shadow-[0_0_8px_rgba(236,72,153,0.8)]",
     iconBg: "bg-pink-500/20 text-pink-400",
@@ -81,7 +44,6 @@ export const staffMembers: StaffMember[] = [
     role: "Koor Build",
     desc: "Kepala arsitek yang merancang dan membangun infrastruktur server SMP.",
     icon: Hammer,
-    image: kianoImg,
     glow: "shadow-[0_0_15px_rgba(245,158,11,0.3)] hover:shadow-[0_0_30px_rgba(245,158,11,0.6)] border-amber-500/30",
     textGlow: "text-amber-400 drop-shadow-[0_0_8px_rgba(245,158,11,0.8)]",
     iconBg: "bg-amber-500/20 text-amber-400",
@@ -109,68 +71,191 @@ export const staffMembers: StaffMember[] = [
   },
 ];
 
+export const ruleNumbers = {
+  maxLightWarnings: 5,
+  warningExpiryDays: 7,
+  appealDays: 7,
+  inactivityWeeks: 2,
+  lightBanMaxDays: 1,
+} as const;
+
 export const rules = [
   {
     id: "rule-1",
     title: "RULE #1: Be Respectful",
-    content:
-      "No toxic behavior, harassment, insults, or hate speech. Respect all players and staff.",
+    intro: "Hormati semua pemain dan staf, baik di dalam game maupun di Discord dan WhatsApp.",
+    points: [
+      "Dilarang melakukan ujaran kebencian, pelecehan, perundungan, atau membagikan konten dewasa.",
+      "Jangan membagikan data pribadi, seperti alamat, nomor telepon, atau foto, milik sendiri maupun orang lain.",
+      "Hormati keputusan staf. Sampaikan keberatan lewat tiket Discord atau hubungi staf melalui WhatsApp, bukan chat publik.",
+    ],
   },
   {
     id: "rule-2",
     title: "RULE #2: No Griefing",
-    content:
-      "Do not destroy, steal, or modify other players' builds without permission. Pranks are only allowed if both sides agree.",
+    intro: "Jangan merusak, mencuri, atau mengganggu bangunan dan barang orang lain.",
+    points: [
+      "Jangan mencuri, merusak, atau mengubah build milik pemain lain.",
+      "Hormati claim dan jangan membangun di area yang sudah diklaim pemain lain.",
+      "Jangan membuat bangunan yang menyinggung atau farm dan machine yang menyebabkan server lag.",
+      "Perang antar-clan hanya boleh berlangsung dalam event atau war resmi.",
+    ],
   },
   {
     id: "rule-3",
     title: "RULE #3: No Cheating",
-    content:
-      "No hacked clients, X-ray, dupes (except specific non-diamond items), exploits, or unfair mods.",
+    intro: "Bermainlah dengan adil dan raih kemenangan tanpa kecurangan.",
+    points: [
+      "Dilarang memakai hacked client, X-ray, duplication glitch, atau memanfaatkan bug.",
+      "Laporkan bug kepada staf melalui Discord atau WhatsApp dan jangan memanfaatkannya untuk keuntungan pribadi.",
+      "Satu pemain, satu akun. Jangan gunakan akun alternatif untuk menghindari sanksi.",
+      "Jangan memperjualbelikan akun atau item dengan uang asli. Server ini tanpa pay-to-win.",
+    ],
   },
   {
     id: "rule-4",
     title: "RULE #4: No Drama",
-    content:
-      "No starting arguments, fights, or unnecessary conflicts. Repeated drama may result in warnings.",
+    intro: "Jaga chat agar tetap nyaman dan hindari konflik yang tidak perlu.",
+    points: [
+      "Jangan spam, memancing keributan, atau menyindir pemain di chat publik.",
+      "Jika ada masalah dengan pemain lain, kirim bukti berupa screenshot atau video lewat tiket Discord atau hubungi staf melalui WhatsApp.",
+      `Ajukan banding atas keputusan staf lewat tiket Discord atau WhatsApp dalam ${ruleNumbers.appealDays} hari.`,
+    ],
   },
   {
     id: "rule-5",
-    title: "RULE #5: Have Fun!",
-    content: "This is a community—play fair, help others, and enjoy the game!",
+    title: "RULE #5: Have Fun",
+    intro: "Server ini dibuat untuk bersenang-senang dan membangun komunitas.",
+    points: [
+      "Bantu pemain baru dan bekerja sama dengan pemain lain.",
+      "Utamakan sekolah dan ujian. Kamu tidak wajib online setiap hari.",
+      "Ikuti event, berkarya, dan nikmati permainan bersama!",
+    ],
   },
 ];
 
+export const playSchedule = {
+  tracks: [
+    {
+      name: "Weekend Track",
+      days: "Jumat – Minggu",
+      description: "khusus member yang sibuk",
+    },
+    {
+      name: "Daily Track",
+      days: "Senin – Minggu",
+      description: "untuk member yang ingin bermain setiap hari",
+    },
+  ],
+  shared:
+    "Kedua track sama-sama diterima. Kamu bisa berganti track kapan saja; server, aturan, dan pengumumannya sama untuk semua member.",
+  busy: "Sibuk bukan pelanggaran. Cukup beri tahu staf melalui Discord atau WhatsApp.",
+} as const;
+
+export const warningGroups = [
+  {
+    label: "Pelanggaran Ringan",
+    note: "Contoh: spam, bahasa kasar ringan, atau pelanggaran aturan chat.",
+    points: [
+      `Warning 1–${ruleNumbers.maxLightWarnings - 2}: peringatan melalui Discord, WhatsApp, atau in-game.`,
+      `Warning ${ruleNumbers.maxLightWarnings - 1}: mute atau kick.`,
+      `Warning ${ruleNumbers.maxLightWarnings}: ban sementara hingga ${ruleNumbers.lightBanMaxDays} hari.`,
+      `Warning dihapus setelah ${ruleNumbers.warningExpiryDays} hari tanpa pelanggaran baru.`,
+    ],
+  },
+  {
+    label: "Pelanggaran Berat",
+    note: "Contoh: hack client, doxxing, ancaman, konten dewasa, atau griefing besar-besaran.",
+    points: [
+      `Pelanggaran dapat langsung dikenai ban beberapa hari hingga permanen, tanpa menunggu ${ruleNumbers.maxLightWarnings} warning.`,
+      "Kamu dapat mengajukan banding atas keputusan staf lewat tiket Discord atau WhatsApp.",
+    ],
+  },
+  {
+    label: "Tidak Aktif",
+    points: [
+      `Tidak online lebih dari ${ruleNumbers.inactivityWeeks} minggu tanpa kabar dapat berujung peringatan dan pelepasan claim atau slot.`,
+      "Jika izin karena ujian, liburan, atau sakit, beri kabar lewat Discord atau WhatsApp sebelumnya.",
+      "Tidak ada ban hanya karena kamu tidak aktif.",
+    ],
+  },
+  {
+    label: "Tugas",
+    points: [
+      "Setiap tugas dari staf memiliki tenggat yang jelas dan diumumkan sebelumnya.",
+      "Tugas yang tidak dikerjakan tanpa penjelasan mendapat 1 warning. Jika ada kendala, hubungi staf melalui Discord atau WhatsApp sebelum tenggat.",
+    ],
+  },
+];
+
+const applicationOpeningMonth = new Intl.DateTimeFormat("id-ID", {
+  month: "long",
+  year: "numeric",
+  timeZone: "Asia/Jakarta",
+}).format(new Date(applicationConfig.opensAt));
+
 export const faqs = [
   {
+    q: "Harus main setiap hari?",
+    a: "Tidak. Pilih Weekend Track atau Daily Track sesuai waktumu; kamu bisa berganti kapan saja.",
+  },
+  {
+    q: "Kalau lagi sibuk gimana?",
+    a: "Kabari admin melalui Discord atau WhatsApp. Sibuk bukan pelanggaran.",
+  },
+  {
     q: "Mengapa Season 2 dihentikan?",
-    a: "Season 2 dihentikan untuk sementara. Proyek ini menunggu waktu yang tepat dan kesiapan komunitas sebelum dilanjutkan.",
+    a: "Season 2 diarsipkan agar tim bisa fokus menyiapkan proyek baru dengan lebih matang.",
   },
   {
-    q: "Apakah proyek ini akan kembali?",
-    a: "Ada kemungkinan proyek ini kembali di masa depan ketika komunitas sudah siap. Tidak ada jadwal kembali yang ditetapkan saat ini.",
+    q: "Apakah akan ada proyek baru?",
+    a: `Ya! Pendaftaran dibuka ${applicationOpeningMonth}, dilanjutkan fase test server sebelum rilis penuh. Jadwal dapat berubah.`,
   },
   {
-    q: "Apakah komunitas masih bisa bergabung?",
-    a: "Komunitas tetap menjadi bagian penting dari proyek ini. Ikuti Discord untuk mendapatkan informasi jika rekrutmen dibuka kembali.",
+    q: "Siapa yang boleh mendaftar?",
+    a: "Pendaftaran hanya untuk siswa SMPN 46 Surabaya.",
   },
   {
-    q: "Apakah konsep Season 2 masih dipertahankan?",
-    a: "Konsep clan, survival, ekonomi pemain, dan event tetap menjadi bagian dari visi proyek jika Season 2 dilanjutkan.",
+    q: "Apa yang akan dilakukan di proyek berikutnya?",
+    a: "Member akan membangun SMPN 46 Surabaya di Minecraft dalam survival vanilla tanpa pay-to-win, dengan clan, event, dan turnamen. Detail lainnya menyusul.",
+  },
+  {
+    q: "Platform apa yang dipakai?",
+    a: "Server menggunakan Minecraft Bedrock Edition.",
+  },
+  {
+    q: "Apa itu fase uji coba?",
+    a: "Pemain yang diterima mencoba server sebelum rilis penuh. Selama test server, masih ada perubahan dan perbaikan.",
+  },
+  {
+    q: "Bagaimana cara mendaftar?",
+    a: "Saat pendaftaran dibuka, gunakan tombol Apply Now di situs ini. Pendaftaran tidak dibuka lewat tautan lain.",
+  },
+  {
+    q: "Kapan server resmi diluncurkan?",
+    a: "Tanggalnya belum diumumkan. Pantau situs ini dan Discord untuk kabar resmi.",
   },
 ];
 
 export const features = [
   {
-    icon: ShieldCheck,
-    title: "FACTIONS",
-    desc: "Form clans, build empires, and wage wars or alliances.",
+    icon: Building2,
+    title: "BUILD OUR SCHOOL",
+    desc: "Builders and members work together to recreate SMPN 46 Surabaya in Minecraft.",
   },
   {
-    icon: AlertTriangle,
-    title: "HARDCORE",
-    desc: "No pay-to-win. True vanilla survival experience.",
+    icon: Leaf,
+    title: "VANILLA SURVIVAL",
+    desc: "No pay-to-win. A fair survival experience for every player.",
   },
-  { icon: Check, title: "ECONOMY", desc: "Player-driven diamond economy and trading system." },
-  { icon: LogIn, title: "EVENTS", desc: "Weekly custom events, boss fights, and tournaments." },
+  {
+    icon: Shield,
+    title: "CLANS",
+    desc: "Form clans, build together, and stand with your alliance.",
+  },
+  {
+    icon: Trophy,
+    title: "EVENTS & TOURNAMENTS",
+    desc: "Community events and tournaments run by our event team.",
+  },
 ];

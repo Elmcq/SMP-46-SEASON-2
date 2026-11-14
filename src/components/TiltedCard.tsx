@@ -115,16 +115,10 @@ export default function TiltedCard({
           scale,
         }}
       >
-        <motion.img
-          src={imageSrc}
-          alt={altText}
-          className="tilted-card-img"
-        />
+        <motion.img src={imageSrc} alt={altText} className="tilted-card-img" />
 
         {displayOverlayContent && overlayContent && (
-          <motion.div className="tilted-card-overlay">
-            {overlayContent}
-          </motion.div>
+          <motion.div className="tilted-card-overlay">{overlayContent}</motion.div>
         )}
       </motion.div>
 

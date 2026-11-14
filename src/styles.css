@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Rubik:wght@400;600;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -174,16 +174,36 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: "Rubik", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   .font-pixel {
-    font-family: "Press Start 2P", monospace;
-    letter-spacing: 0.02em;
+    font-family: "Rubik", system-ui, sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+
+  .font-pixel.text-xs:not([class*="tracking-"]),
+  .font-pixel.text-sm:not([class*="tracking-"]) {
+    letter-spacing: 0.05em;
+  }
+
+  h1.font-pixel,
+  h2.font-pixel,
+  h3.font-pixel,
+  h4.font-pixel {
+    line-height: 1.2;
   }
 
   .font-mc {
-    font-family: "VT323", monospace;
-    letter-spacing: 0.04em;
+    font-family: "Rubik", system-ui, sans-serif;
+    font-weight: 400;
+    letter-spacing: normal;
+  }
+
+  .font-mc:not([class*="leading-"]) {
+    line-height: 1.5;
   }
 }
 
@@ -416,8 +436,9 @@
 }
 
 .team-placeholder-text {
-  font-family: "Press Start 2P", monospace;
-  font-size: 8px;
+  font-family: "Rubik", system-ui, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 800;
   color: oklch(0.6 0.04 245);
   text-align: center;
   line-height: 1.6;

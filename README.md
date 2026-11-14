@@ -69,6 +69,6 @@ Before publishing a deployment, verify that community invite links and archived 
 
 The hero video and background music are hosted on Cloudinary and configured in `src/config/media.ts`. Large MP4/MP3 files should not be committed to `src/assets/`.
 
-- The hero video uses the local `hero-smp.jpg` as a poster while the Cloudinary video loads.
+- The hero video loads from Cloudinary over the existing dark navy and cyan gradient fallback.
 - Background music uses `preload="none"` and starts only after the visitor presses the music button.
 - Update the public Cloudinary delivery URLs in `src/config/media.ts` when media changes.

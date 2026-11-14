@@ -1,0 +1,16 @@
+# Normalize all text files to LF in the repo and on checkout
+# (overrides core.autocrlf on Windows so fresh checkouts stay LF)
+* text=auto eol=lf
+
+# Binaries — never normalize, never diff as text
+*.png binary
+*.gif binary
+*.webp binary
+*.jpg binary
+*.jpeg binary
+*.ico binary
+*.mp4 binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.otf binary
