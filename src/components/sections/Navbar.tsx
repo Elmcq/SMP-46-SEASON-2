@@ -1,26 +1,35 @@
 import { useEffect, useRef, useState } from "react";
 
+const navLinks = [
+  { href: "#about", label: "About" },
+  { href: "#clans", label: "Clans" },
+  { href: "#rules", label: "Rules" },
+  { href: "#join", label: "Join" },
+];
+
 function useNavbarVisibility() {
   const [isVisible, setIsVisible] = useState(true);
   const lastScrollYRef = useRef(0);
 
   useEffect(() => {
-    let frameRequested = false;
+    let frameId = 0;
 
-    const controlNavbar = () => {
-      if (frameRequested) return;
-      frameRequested = true;
-
-      window.requestAnimationFrame(() => {
-        const currentScrollY = window.scrollY;
-        setIsVisible(currentScrollY <= lastScrollYRef.current || currentScrollY <= 100);
-        lastScrollYRef.current = currentScrollY;
-        frameRequested = false;
-      });
+    const updateVisibility = () => {
+      frameId = 0;
+      const currentScrollY = window.scrollY;
+      setIsVisible(currentScrollY <= lastScrollYRef.current || currentScrollY <= 100);
+      lastScrollYRef.current = currentScrollY;
     };
 
-    window.addEventListener("scroll", controlNavbar, { passive: true });
-    return () => window.removeEventListener("scroll", controlNavbar);
+    const handleScroll = () => {
+      frameId ||= window.requestAnimationFrame(updateVisibility);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.cancelAnimationFrame(frameId);
+    };
   }, []);
 
   return isVisible;
@@ -37,30 +46,15 @@ export function Navbar() {
     >
       <div className="h-16 flex items-center justify-center px-5 sm:px-8 bg-background/80 backdrop-blur-xl border border-border/50 shadow-[0_8px_30px_rgb(0,0,0,0.4)] rounded-full alliance-card-glow">
         <div className="flex items-center justify-center gap-4 sm:gap-8">
-          <a
-            href="#about"
-            className="min-h-10 flex items-center font-mc text-[18px] sm:text-2xl hover:text-primary transition-colors drop-shadow-md"
-          >
-            About
-          </a>
-          <a
-            href="#clans"
-            className="min-h-10 flex items-center font-mc text-[18px] sm:text-2xl hover:text-primary transition-colors drop-shadow-md"
-          >
-            Clans
-          </a>
-          <a
-            href="#rules"
-            className="min-h-10 flex items-center font-mc text-[18px] sm:text-2xl hover:text-primary transition-colors drop-shadow-md"
-          >
-            Rules
-          </a>
-          <a
-            href="#join"
-            className="min-h-10 flex items-center font-mc text-[18px] sm:text-2xl hover:text-primary transition-colors drop-shadow-md"
-          >
-            Join
-          </a>
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="min-h-10 flex items-center font-mc text-[18px] sm:text-2xl hover:text-primary transition-colors drop-shadow-md"
+            >
+              {link.label}
+            </a>
+          ))}
         </div>
       </div>
     </nav>

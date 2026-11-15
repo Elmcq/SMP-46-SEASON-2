@@ -60,6 +60,9 @@ export const getRouter = () => {
     routeTree,
     context: {},
     scrollRestoration: true,
+    // Restored positions jump straight back instead of animating through the
+    // page; in-page anchor links still scroll smoothly via CSS.
+    scrollRestorationBehavior: "instant",
     defaultPreloadStaleTime: 0,
     defaultErrorComponent: DefaultErrorComponent,
   });

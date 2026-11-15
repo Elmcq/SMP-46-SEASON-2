@@ -13,6 +13,10 @@ export default defineConfig({
     tanstackStart(),
     react(),
   ],
+  server: {
+    // Dev server only: lets the v0 preview reach `vite dev` through its public hostname.
+    allowedHosts: ["new-chat-2.v0.build"],
+  },
   resolve: {
     alias: {
       "@": new URL("./src", import.meta.url).pathname,

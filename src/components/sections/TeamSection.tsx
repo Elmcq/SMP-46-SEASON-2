@@ -45,8 +45,6 @@ export function TeamSection() {
                       imageWidth="clamp(170px, 18vw, 230px)"
                       rotateAmplitude={10}
                       scaleOnHover={1.06}
-                      showMobileWarning={false}
-                      showTooltip={false}
                     />
                   )}
                 </div>

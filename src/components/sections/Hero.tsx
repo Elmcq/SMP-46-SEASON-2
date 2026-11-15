@@ -1,7 +1,8 @@
 import { ApplicationSchedule } from "@/components/ApplicationSchedule";
 import { LockKeyhole } from "lucide-react";
 import headerLogo from "@/assets/Headerlogo.png";
-import { applicationConfig, getApplicationStatus } from "@/config/applications";
+import { applicationConfig } from "@/config/applications";
+import { useApplicationStatus, usePlayWhileVisible } from "@/components/sections/hooks";
 import { mediaConfig } from "@/config/media";
 import { projectConfig } from "@/config/project";
 import { serverConfig, showLegacyServerList } from "@/config/server";
@@ -23,8 +24,9 @@ const particles = projectConfig.showAmbientParticles
     }))
   : [];
 
-export function Hero({ now }: { now: number }) {
-  const applicationStatus = getApplicationStatus(now);
+export function Hero({ initialNow }: { initialNow: number }) {
+  const applicationStatus = useApplicationStatus(initialNow);
+  const videoRef = usePlayWhileVisible<HTMLVideoElement>();
   const canApply = applicationStatus === "open" && Boolean(applicationConfig.googleFormUrl);
   const applyLabel = canApply
     ? "APPLY NOW"
@@ -38,6 +40,7 @@ export function Hero({ now }: { now: number }) {
     <section className="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
       <div className="absolute inset-0 z-0 bg-hero-gradient">
         <video
+          ref={videoRef}
           autoPlay
           loop
           muted
@@ -84,7 +87,7 @@ export function Hero({ now }: { now: number }) {
           </p>
         </div>
 
-        <ApplicationSchedule now={now} />
+        <ApplicationSchedule initialNow={initialNow} />
 
         <div className="mt-6 flex w-full items-center justify-center">
           {canApply ? (

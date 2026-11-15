@@ -10,9 +10,9 @@ import { FaqSection } from "@/components/sections/FaqSection";
 import { JoinCtaSection } from "@/components/sections/JoinCtaSection";
 import { MusicToggle } from "@/components/sections/MusicToggle";
 import { Footer } from "@/components/footer";
-import { useApplicationClock, useRevealOnScroll } from "@/components/sections/hooks";
+import { useRevealOnScroll } from "@/components/sections/hooks";
 
-const websiteSchema = {
+const websiteSchema = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "PROJECT SMP 46 — Minecraft Community for SMPN 46 Surabaya Students",
@@ -21,9 +21,9 @@ const websiteSchema = {
   description:
     "A Minecraft community exclusively for SMPN 46 Surabaya students. Build together on Java & Bedrock. Currently in preparation, registration info coming soon.",
   inLanguage: ["en", "id"],
-};
+});
 
-const faqSchema = {
+const faqSchema = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: faqs.map((faq) => ({
@@ -34,38 +34,35 @@ const faqSchema = {
       text: faq.a,
     },
   })),
-};
+});
 
 export const Route = createFileRoute("/")({
+  // The server's timestamp is shipped with the page so the countdown hydrates
+  // against the exact HTML the server rendered.
+  loader: () => ({ now: Date.now() }),
   component: Index,
 });
 
 function Index() {
-  const now = useApplicationClock();
+  const { now: initialNow } = Route.useLoaderData();
   useRevealOnScroll();
 
   return (
     <main className="page-atmosphere min-h-screen overflow-x-hidden pb-20 text-foreground sm:pb-0">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: websiteSchema }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: faqSchema }} />
       <h1 className="sr-only">
         PROJECT SMP 46 — Minecraft Community for SMPN 46 Surabaya Students
       </h1>
 
       <Navbar />
-      <Hero now={now} />
+      <Hero initialNow={initialNow} />
       <AboutSection />
       <ClansSection />
       <TeamSection />
       <RulesSection />
       <FaqSection />
-      <JoinCtaSection now={now} />
+      <JoinCtaSection initialNow={initialNow} />
       <MusicToggle />
       <Footer />
     </main>

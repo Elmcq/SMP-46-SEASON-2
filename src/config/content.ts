@@ -1,28 +1,13 @@
-import { Building2, Camera, Hammer, Leaf, Megaphone, Shield, Trophy } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+import { Building2, Leaf, Shield, Trophy } from "lucide-react";
 import { applicationConfig } from "@/config/applications";
 import azzamImg from "@/assets/chibi-azzam.gif";
 import yogaImg from "@/assets/chibi.yoga.gif";
-
-export type Clan = {
-  name: string;
-  leader: string;
-};
-
-export const clans: Clan[] = [
-  { name: "WHITE MOON", leader: "Azzam" },
-  { name: "MYSTERIOUS FORCE", leader: "Yoga" },
-  { name: "DISTRICT 12TH", leader: "Altan" },
-];
 
 type StaffMemberBase = {
   name: string;
   role: string;
   desc: string;
-  icon: LucideIcon;
-  glow: string;
   textGlow: string;
-  iconBg: string;
 };
 
 export type StaffMember = StaffMemberBase &
@@ -33,41 +18,29 @@ export const staffMembers: StaffMember[] = [
     name: "Sharon",
     role: "Koor Dokum",
     desc: "Mengurus dokumentasi, media, dan mengabadikan momen perjalanan Season 2.",
-    icon: Camera,
-    glow: "shadow-[0_0_15px_rgba(236,72,153,0.3)] hover:shadow-[0_0_30px_rgba(236,72,153,0.6)] border-pink-500/30",
     textGlow: "text-pink-400 drop-shadow-[0_0_8px_rgba(236,72,153,0.8)]",
-    iconBg: "bg-pink-500/20 text-pink-400",
     placeholder: true,
   },
   {
     name: "Kiano",
     role: "Koor Build",
     desc: "Kepala arsitek yang merancang dan membangun infrastruktur server SMP.",
-    icon: Hammer,
-    glow: "shadow-[0_0_15px_rgba(245,158,11,0.3)] hover:shadow-[0_0_30px_rgba(245,158,11,0.6)] border-amber-500/30",
     textGlow: "text-amber-400 drop-shadow-[0_0_8px_rgba(245,158,11,0.8)]",
-    iconBg: "bg-amber-500/20 text-amber-400",
     placeholder: true,
   },
   {
     name: "Azzam",
     role: "Server Guard & Scripter",
     desc: "Menjaga keamanan server Minecraft dan mengembangkan script backend bot.js.",
-    icon: Shield,
     image: azzamImg,
-    glow: "shadow-[0_0_15px_rgba(59,130,246,0.3)] hover:shadow-[0_0_30px_rgba(59,130,246,0.6)] border-blue-500/30",
     textGlow: "text-blue-400 drop-shadow-[0_0_8px_rgba(59,130,246,0.8)]",
-    iconBg: "bg-blue-500/20 text-blue-400",
   },
   {
     name: "Yoga",
     role: "Events & Pengumuman",
     desc: "Mengatur event mingguan seru, pengumuman server, dan aktivitas pemain.",
-    icon: Megaphone,
     image: yogaImg,
-    glow: "shadow-[0_0_15px_rgba(34,197,94,0.3)] hover:shadow-[0_0_30px_rgba(34,197,94,0.6)] border-green-500/30",
     textGlow: "text-green-400 drop-shadow-[0_0_8px_rgba(34,197,94,0.8)]",
-    iconBg: "bg-green-500/20 text-green-400",
   },
 ];
 
