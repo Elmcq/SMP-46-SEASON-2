@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { applicationConfig, getApplicationStatus } from "@/config/applications";
+import { useApplicationClock } from "@/components/sections/hooks";
 
 function getRemainingTime(target: string, now: number) {
   const totalSeconds = Math.max(0, Math.floor((Date.parse(target) - now) / 1000));
@@ -11,7 +12,8 @@ function getRemainingTime(target: string, now: number) {
   };
 }
 
-export function ApplicationSchedule({ now }: { now: number }) {
+export function ApplicationSchedule({ initialNow }: { initialNow: number }) {
+  const now = useApplicationClock(initialNow);
   const status = getApplicationStatus(now);
 
   if (status === "complete") return null;

@@ -1,8 +1,16 @@
 import { communityLinks } from "@/config/server";
-import { getApplicationStatus } from "@/config/applications";
+import type { ApplicationStatus } from "@/config/applications";
+import { useApplicationStatus } from "@/components/sections/hooks";
 
-export function JoinCtaSection({ now }: { now: number }) {
-  const applicationStatus = getApplicationStatus(now);
+const statusMessages: Record<ApplicationStatus, string> = {
+  "not-open": "Applications open soon. Stay connected for updates.",
+  open: "Applications are open. Apply now and join the community.",
+  closed: "Applications are closed. Stay connected for updates.",
+  complete: "Stay connected for updates.",
+};
+
+export function JoinCtaSection({ initialNow }: { initialNow: number }) {
+  const applicationStatus = useApplicationStatus(initialNow);
 
   return (
     <section id="join" className="atmosphere-section py-32 px-6 overflow-hidden">
@@ -12,12 +20,7 @@ export function JoinCtaSection({ now }: { now: number }) {
           THE NEXT CHAPTER BEGINS
         </h2>
         <p className="font-mc text-2xl text-foreground/90 mb-10">
-          {applicationStatus === "not-open" &&
-            "Applications open soon. Stay connected for updates."}
-          {applicationStatus === "open" &&
-            "Applications are open. Apply now and join the community."}
-          {applicationStatus === "closed" && "Applications are closed. Stay connected for updates."}
-          {applicationStatus === "complete" && "Stay connected for updates."}
+          {statusMessages[applicationStatus]}
         </p>
         <div className="flex flex-wrap justify-center gap-4">
           <a

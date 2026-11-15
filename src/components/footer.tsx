@@ -29,7 +29,15 @@ export function Footer() {
         <div className="flex flex-col gap-6 py-7 sm:py-9">
           <div className="flex items-center justify-between gap-4">
             <a href="/" className="group inline-flex min-h-11 items-center gap-3">
-              <img src={logoImg} alt="" className="size-10 object-contain" />
+              <img
+                src={logoImg}
+                alt=""
+                width={40}
+                height={40}
+                loading="lazy"
+                decoding="async"
+                className="size-10 object-contain"
+              />
               <span className="font-pixel text-xs tracking-wide text-foreground transition-colors group-hover:text-primary sm:text-sm">
                 SMPN 46 PROJECT MINECRAFT
               </span>
